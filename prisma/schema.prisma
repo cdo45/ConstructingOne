@@ -1,0 +1,148 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "sqlite"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id           String   @id @default(cuid())
+  email        String   @unique
+  passwordHash String
+  name         String
+  role         String // "admin" | "pm" | "subcontractor"
+  companyName  String?
+  createdAt    DateTime @default(now())
+  updatedAt    DateTime @updatedAt
+
+  managedProjects Project[]       @relation("PMProjects")
+  subContracts    Contract[]      @relation("SubContracts")
+  subSubmissions  BillingPeriod[] @relation("SubSubmissions")
+  coInitiated     ChangeOrder[]   @relation("COInitiator")
+  approvals       Approval[]
+}
+
+model Project {
+  id            String    @id @default(cuid())
+  projectNumber String    @unique
+  name          String
+  client        String
+  contractValue Decimal
+  startDate     DateTime
+  endDate       DateTime?
+  status        String    @default("active") // active | completed | on_hold
+  pmId          String
+  pm            User      @relation("PMProjects", fields: [pmId], references: [id])
+  createdAt     DateTime  @default(now())
+  updatedAt     DateTime  @updatedAt
+
+  contracts      Contract[]
+  changeOrders   ChangeOrder[]
+  billingPeriods BillingPeriod[]
+}
+
+model Contract {
+  id            String   @id @default(cuid())
+  projectId     String
+  project       Project  @relation(fields: [projectId], references: [id])
+  subId         String
+  sub           User     @relation("SubContracts", fields: [subId], references: [id])
+  contractValue Decimal
+  description   String
+  createdAt     DateTime @default(now())
+  updatedAt     DateTime @updatedAt
+
+  lineItems LineItem[]
+}
+
+model LineItem {
+  id             String   @id @default(cuid())
+  contractId     String
+  contract       Contract @relation(fields: [contractId], references: [id])
+  itemNumber     String
+  description    String
+  contractType   String // lump_sum | unit_price
+  unit           String?
+  unitPrice      Decimal?
+  scheduledQty   Decimal?
+  scheduledValue Decimal
+  createdAt      DateTime @default(now())
+  updatedAt      DateTime @updatedAt
+
+  billingLineItems BillingLineItem[]
+}
+
+model BillingPeriod {
+  id          String    @id @default(cuid())
+  projectId   String
+  project     Project   @relation(fields: [projectId], references: [id])
+  contractId  String
+  subId       String
+  sub         User      @relation("SubSubmissions", fields: [subId], references: [id])
+  periodMonth Int
+  periodYear  Int
+  status      String    @default("draft") // draft | submitted | approved | rejected
+  submittedAt DateTime?
+  notes       String?
+  createdAt   DateTime  @default(now())
+  updatedAt   DateTime  @updatedAt
+
+  lineItems BillingLineItem[]
+  approvals Approval[]
+}
+
+model BillingLineItem {
+  id              String        @id @default(cuid())
+  billingPeriodId String
+  billingPeriod   BillingPeriod @relation(fields: [billingPeriodId], references: [id], onDelete: Cascade)
+  lineItemId      String
+  lineItem        LineItem      @relation(fields: [lineItemId], references: [id])
+
+  percentComplete Decimal?
+  qtyThisPeriod   Decimal?
+  qtyCumulative   Decimal?
+
+  valueThisPeriod Decimal
+  valueCumulative Decimal
+  balanceToFinish Decimal
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+model ChangeOrder {
+  id                 String    @id @default(cuid())
+  projectId          String
+  project            Project   @relation(fields: [projectId], references: [id])
+  coNumber           String
+  initiatedBy        String // sub | customer | pm
+  initiatorId        String
+  initiator          User      @relation("COInitiator", fields: [initiatorId], references: [id])
+  description        String
+  amount             Decimal
+  timeImpact         Int?
+  timeImpactNote     String?
+  status             String    @default("pending") // pending | pm_approved | customer_approved | rejected | voided
+  customerApprovedAt DateTime?
+  notes              String?
+  createdAt          DateTime  @default(now())
+  updatedAt          DateTime  @updatedAt
+
+  approvals Approval[]
+}
+
+model Approval {
+  id              String         @id @default(cuid())
+  approverId      String
+  approver        User           @relation(fields: [approverId], references: [id])
+  entityType      String // billing_period | change_order
+  billingPeriodId String?
+  billingPeriod   BillingPeriod? @relation(fields: [billingPeriodId], references: [id])
+  changeOrderId   String?
+  changeOrder     ChangeOrder?   @relation(fields: [changeOrderId], references: [id])
+  decision        String
+  comments        String?
+  createdAt       DateTime       @default(now())
+}
