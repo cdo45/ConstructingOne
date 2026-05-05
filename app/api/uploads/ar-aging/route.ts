@@ -32,6 +32,7 @@ const REQUIRED_HEADERS = [
   "job_no",
   "customer_no",
   "customer_name",
+  "row_type2",
 ];
 
 export async function POST(req: Request): Promise<Response> {
@@ -66,39 +67,25 @@ export async function POST(req: Request): Promise<Response> {
       );
     }
 
-    const hasExplicitRowType = headers.includes("row_type");
     const inserts: ArAgingInsertRow[] = [];
     let skipped = 0;
 
     for (const row of rows) {
       const customerNoRaw = toText(row.customer_no);
       const invoiceNoRaw = toText(row.invoice_no);
+      const row_type = toText(row.row_type2);
 
-      // Foundation aging exports interleave subtotal "Total for sort 1" rows
-      // with detail rows; subtotal rows have a label in invoice_no/description
-      // and may or may not carry a customer_no. Detect either via an explicit
-      // row_type column (if Foundation includes one) or via the heuristic
-      // that subtotals carry "Total" text in the invoice_no/description.
-      let row_type: string;
-      if (hasExplicitRowType) {
-        row_type = toText(row.row_type) || "detail";
-      } else {
-        const labelText = `${invoiceNoRaw ?? ""} ${toText(row.invoice_description) ?? ""}`;
-        if (/total\s+for\s+sort/i.test(labelText)) {
-          row_type = "Total for sort 1";
-        } else if (!customerNoRaw && !invoiceNoRaw) {
-          // truly empty trailing row — skip
-          skipped++;
-          continue;
-        } else {
-          row_type = "detail";
-        }
+      // Defensive skip for truly empty trailing rows only — no heuristic
+      // inference of row_type values.
+      if (!row_type && !customerNoRaw && !invoiceNoRaw) {
+        skipped++;
+        continue;
       }
 
-      // Detail rows must have a customer_no; subtotal rows may not.
       const customer_no = customerNoRaw ?? "";
       const customer_no_clean = customer_no.trim();
 
+      // Detail rows must have a customer_no; subtotal rows may not.
       if (row_type === "detail" && !customer_no_clean) {
         skipped++;
         continue;

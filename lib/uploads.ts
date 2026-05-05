@@ -167,7 +167,7 @@ export async function bulkInsertArAging(
     const customer_no: string[] = [];
     const customer_name: (string | null)[] = [];
     const customer_no_clean: string[] = [];
-    const row_type: string[] = [];
+    const row_type: (string | null)[] = [];
 
     for (const r of chunk) {
       upload_id.push(uploadId);
@@ -233,7 +233,7 @@ export type ArAgingInsertRow = {
   customer_no: string;
   customer_name: string | null;
   customer_no_clean: string;
-  row_type: string;
+  row_type: string | null;
 };
 
 export async function getLatestActiveUpload(type: UploadType): Promise<UploadRow | null> {
