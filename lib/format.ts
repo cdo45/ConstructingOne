@@ -49,6 +49,20 @@ export function fmtPercent(v: number | null | undefined): string {
   return `${(v * 100).toFixed(1)}%`;
 }
 
+/**
+ * Compact dollar formatting for charts and headline KPIs.
+ * Examples: 17467441 → "$17.5M"; 925000 → "$925K"; 240 → "$240".
+ */
+export function fmtCurrencyCompact(v: number | null | undefined): string {
+  if (v == null || !Number.isFinite(v)) return "—";
+  const sign = v < 0 ? "-" : "";
+  const abs = Math.abs(v);
+  if (abs >= 1_000_000_000) return `${sign}$${(abs / 1_000_000_000).toFixed(1)}B`;
+  if (abs >= 1_000_000) return `${sign}$${(abs / 1_000_000).toFixed(1)}M`;
+  if (abs >= 1_000) return `${sign}$${(abs / 1_000).toFixed(1)}K`;
+  return `${sign}$${abs.toFixed(0)}`;
+}
+
 // --- Heatmap color helpers --------------------------------------------------
 
 type RGB = [number, number, number];

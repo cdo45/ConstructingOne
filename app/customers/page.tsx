@@ -22,12 +22,20 @@ export default async function CustomersPage() {
                 Payment metrics joined with aging data. Click any column header to sort.
               </p>
             </div>
-            <Link
-              href="/forecast"
-              className="rounded bg-white/10 px-3 py-1.5 text-xs font-semibold text-white hover:bg-white/20"
-            >
-              Forecast →
-            </Link>
+            <div className="flex gap-2">
+              <Link
+                href="/dashboard"
+                className="rounded bg-white/10 px-3 py-1.5 text-xs font-semibold text-white hover:bg-white/20"
+              >
+                Dashboard
+              </Link>
+              <Link
+                href="/forecast"
+                className="rounded bg-white/10 px-3 py-1.5 text-xs font-semibold text-white hover:bg-white/20"
+              >
+                Forecast →
+              </Link>
+            </div>
           </div>
         </div>
       </header>

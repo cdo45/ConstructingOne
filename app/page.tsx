@@ -14,6 +14,13 @@ const cards: Array<{
     accent: "navy",
   },
   {
+    href: "/dashboard",
+    title: "Dashboard",
+    description:
+      "KPIs, top customers chart, and the full payment heatmap.",
+    accent: "navy",
+  },
+  {
     href: "/customers",
     title: "Customers",
     description:
@@ -54,7 +61,7 @@ export default function HomePage() {
       </header>
 
       <section className="mx-auto max-w-6xl px-6 py-12">
-        <div className="grid grid-cols-1 gap-6 md:grid-cols-3">
+        <div className="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-4">
           {cards.map((card) => (
             <Link
               key={card.title}
