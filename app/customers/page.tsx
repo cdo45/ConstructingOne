@@ -30,6 +30,12 @@ export default async function CustomersPage() {
                 Dashboard
               </Link>
               <Link
+                href="/rankings"
+                className="rounded bg-white/10 px-3 py-1.5 text-xs font-semibold text-white hover:bg-white/20"
+              >
+                Rankings
+              </Link>
+              <Link
                 href="/forecast"
                 className="rounded bg-white/10 px-3 py-1.5 text-xs font-semibold text-white hover:bg-white/20"
               >

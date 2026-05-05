@@ -1,10 +1,12 @@
 import Link from "next/link";
 
+type Accent = "navy" | "orange" | "good" | "teal";
+
 const cards: Array<{
   href: string;
   title: string;
   description: string;
-  accent: "navy" | "orange" | "good";
+  accent: Accent;
 }> = [
   {
     href: "/upload",
@@ -16,8 +18,7 @@ const cards: Array<{
   {
     href: "/dashboard",
     title: "Dashboard",
-    description:
-      "KPIs, top customers chart, and the full payment heatmap.",
+    description: "KPIs, top customers chart, and yearly billing vs collections.",
     accent: "navy",
   },
   {
@@ -28,6 +29,13 @@ const cards: Array<{
     accent: "orange",
   },
   {
+    href: "/rankings",
+    title: "Rankings",
+    description:
+      "Top 20 customers by speed, reliability, and volume-weighted score.",
+    accent: "teal",
+  },
+  {
     href: "#",
     title: "Forecast",
     description:
@@ -36,16 +44,18 @@ const cards: Array<{
   },
 ];
 
-const accentClasses: Record<"navy" | "orange" | "good", string> = {
+const accentClasses: Record<Accent, string> = {
   navy: "border-t-4 border-vance-navy",
   orange: "border-t-4 border-vance-orange",
   good: "border-t-4 border-vance-good",
+  teal: "border-t-4 border-teal-700",
 };
 
-const titleClasses: Record<"navy" | "orange" | "good", string> = {
+const titleClasses: Record<Accent, string> = {
   navy: "text-vance-navy",
   orange: "text-vance-orange",
   good: "text-vance-good",
+  teal: "text-teal-700",
 };
 
 export default function HomePage() {
@@ -61,14 +71,16 @@ export default function HomePage() {
       </header>
 
       <section className="mx-auto max-w-6xl px-6 py-12">
-        <div className="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-4">
+        <div className="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5">
           {cards.map((card) => (
             <Link
               key={card.title}
               href={card.href}
               className={`block rounded-md bg-white p-6 shadow-sm transition hover:shadow-md ${accentClasses[card.accent]}`}
             >
-              <h2 className={`text-xl font-semibold ${titleClasses[card.accent]}`}>
+              <h2
+                className={`text-xl font-semibold ${titleClasses[card.accent]}`}
+              >
                 {card.title}
               </h2>
               <p className="mt-2 text-sm text-gray-600">{card.description}</p>
