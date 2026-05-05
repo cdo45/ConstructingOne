@@ -1,6 +1,8 @@
 import Link from "next/link";
-import CustomerTable from "@/app/customers/CustomerTable";
-import { getDashboardKpis } from "@/lib/queries/dashboard-kpis";
+import {
+  getDashboardKpis,
+  getBilledCollectedByYear,
+} from "@/lib/queries/dashboard-kpis";
 import { getAllCustomerStats } from "@/lib/queries/customers";
 import {
   fmtCurrency0,
@@ -9,6 +11,9 @@ import {
   fmtInt,
 } from "@/lib/format";
 import TopCustomersChart, { type TopCustomerRow } from "./TopCustomersChart";
+import BilledCollectedChart, {
+  type BilledCollectedRow,
+} from "./BilledCollectedChart";
 
 export const dynamic = "force-dynamic";
 export const runtime = "nodejs";
@@ -38,9 +43,10 @@ function KpiCard({
 }
 
 export default async function DashboardPage() {
-  const [kpis, customers] = await Promise.all([
+  const [kpis, customers, byYear] = await Promise.all([
     getDashboardKpis(),
     getAllCustomerStats(),
+    getBilledCollectedByYear(),
   ]);
 
   const top10: TopCustomerRow[] = [...customers]
@@ -51,6 +57,13 @@ export default async function DashboardPage() {
       customer_name: c.customer_name ?? c.customer_no,
       lifetime_billed: c.lifetime_billed,
     }));
+
+  const billedCollectedRows: BilledCollectedRow[] = byYear.map((r) => ({
+    year: r.year,
+    billed: r.billed,
+    collected: r.collected,
+    is_ytd: r.is_ytd,
+  }));
 
   return (
     <main className="min-h-screen bg-gray-50">
@@ -63,8 +76,8 @@ export default async function DashboardPage() {
               </Link>
               <h1 className="mt-1 text-2xl font-bold">Dashboard</h1>
               <p className="mt-1 text-sm text-gray-200">
-                AR portfolio at a glance — KPIs, top customers, and the full
-                payment heatmap.
+                AR portfolio at a glance — KPIs, top customers, and yearly
+                billing vs collections.
               </p>
             </div>
             <div className="flex gap-2">
@@ -153,12 +166,19 @@ export default async function DashboardPage() {
           </div>
         </div>
 
-        {/* Heatmap customer table */}
-        <div>
-          <h2 className="mb-2 text-sm font-semibold uppercase tracking-wide text-gray-700">
-            All Customers
-          </h2>
-          <CustomerTable rows={customers} />
+        {/* Billed vs Collected by Year */}
+        <div className="rounded border border-gray-200 bg-white shadow-sm">
+          <div className="border-b border-gray-100 bg-vance-navy rounded-t px-4 py-2 text-white">
+            <h2 className="text-sm font-semibold">Billed vs Collected by Year</h2>
+          </div>
+          <div className="p-4">
+            <BilledCollectedChart rows={billedCollectedRows} />
+            <p className="mt-2 text-xs text-gray-500">
+              Billed = SUM(total_invoice) by year of invoice_date · Collected =
+              SUM(paid_to_date) by year of date_paid. Older invoices may pay
+              into current years.
+            </p>
+          </div>
         </div>
       </section>
     </main>

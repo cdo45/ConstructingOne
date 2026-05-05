@@ -81,3 +81,66 @@ export async function getDashboardKpis(): Promise<DashboardKpis> {
     invoices_missing_due_date: num(r.invoices_missing_due_date),
   };
 }
+
+export type BilledCollectedYear = {
+  year: number;
+  billed: number;
+  collected: number;
+  is_ytd: boolean;
+};
+
+// Billed and collected come from different date columns (invoice_date vs
+// date_paid), so a single GROUP BY won't work — aggregate each side
+// independently and FULL OUTER JOIN on year so years with only one of the
+// two metrics still show up.
+const BILLED_COLLECTED_BY_YEAR_SQL = `
+WITH active_inv AS (
+  SELECT id FROM uploads
+  WHERE upload_type = 'ar_detail' AND is_active = TRUE
+  ORDER BY uploaded_at DESC
+  LIMIT 1
+),
+billed AS (
+  SELECT EXTRACT(YEAR FROM invoice_date)::int AS year,
+         SUM(total_invoice)                  AS billed
+  FROM ar_invoices
+  WHERE upload_id = (SELECT id FROM active_inv)
+    AND invoice_date IS NOT NULL
+  GROUP BY EXTRACT(YEAR FROM invoice_date)
+),
+collected AS (
+  SELECT EXTRACT(YEAR FROM date_paid)::int AS year,
+         SUM(paid_to_date)                AS collected
+  FROM ar_invoices
+  WHERE upload_id = (SELECT id FROM active_inv)
+    AND date_paid IS NOT NULL
+  GROUP BY EXTRACT(YEAR FROM date_paid)
+)
+SELECT
+  COALESCE(b.year, c.year)        AS year,
+  COALESCE(b.billed, 0)           AS billed,
+  COALESCE(c.collected, 0)        AS collected
+FROM billed b
+FULL OUTER JOIN collected c ON b.year = c.year
+ORDER BY year ASC
+`;
+
+type RawBilledCollectedRow = {
+  year: number | string;
+  billed: number | string | null;
+  collected: number | string | null;
+};
+
+export async function getBilledCollectedByYear(): Promise<BilledCollectedYear[]> {
+  const rows = (await sql(BILLED_COLLECTED_BY_YEAR_SQL)) as RawBilledCollectedRow[];
+  const currentYear = new Date().getFullYear();
+  return rows.map((r) => {
+    const year = typeof r.year === "number" ? r.year : Number(r.year);
+    return {
+      year,
+      billed: num(r.billed),
+      collected: num(r.collected),
+      is_ytd: year === currentYear,
+    };
+  });
+}
