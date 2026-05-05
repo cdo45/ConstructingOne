@@ -14,7 +14,7 @@ const cards: Array<{
     accent: "navy",
   },
   {
-    href: "#",
+    href: "/customers",
     title: "Customers",
     description:
       "Sortable table of every customer with payment metrics and aging buckets.",
