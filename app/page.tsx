@@ -7,7 +7,7 @@ const cards: Array<{
   accent: "navy" | "orange" | "good";
 }> = [
   {
-    href: "#",
+    href: "/upload",
     title: "Upload",
     description:
       "Upload Foundation AR detail and aging reports. New uploads replace prior data.",
