@@ -10,6 +10,7 @@
     "db:migrate": "tsx db/migrate.ts"
   },
   "dependencies": {
+    "@constructingone/ui": "workspace:*",
     "@neondatabase/serverless": "^0.10.4",
     "@tanstack/react-table": "^8.20.5",
     "date-fns": "^4.1.0",

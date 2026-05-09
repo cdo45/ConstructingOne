@@ -203,7 +203,7 @@ export default function CustomerTable({ rows }: { rows: CustomerStats[] }) {
           value={filter}
           onChange={(e) => setFilter(e.target.value)}
           placeholder="Filter by customer name..."
-          className="w-64 rounded border border-gray-300 px-3 py-1.5 text-sm shadow-sm focus:border-vance-navy focus:outline-none focus:ring-1 focus:ring-vance-navy"
+          className="w-64 rounded border border-gray-300 px-3 py-1.5 text-sm shadow-sm focus:border-[var(--foreground)] focus:outline-none focus:ring-1 focus:ring-[var(--foreground)]"
         />
         <span className="text-xs text-gray-500">
           {visibleCount} of {rows.length} customers
@@ -218,7 +218,7 @@ export default function CustomerTable({ rows }: { rows: CustomerStats[] }) {
                 {hg.headers.map((h) => {
                   const meta = h.column.columnDef.meta as { group?: Group } | undefined;
                   const isAging = meta?.group === "aging";
-                  const headerBg = isAging ? "bg-vance-orange" : "bg-vance-navy";
+                  const headerBg = isAging ? "bg-[var(--foreground)] text-[var(--background)]" : "bg-[var(--foreground)] text-[var(--background)]";
                   const sorted = h.column.getIsSorted();
                   return (
                     <th

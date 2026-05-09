@@ -131,8 +131,8 @@ export default function Home() {
               id="features-heading"
               className="display max-w-[520px] text-right text-[24px] leading-[1.1] sm:text-[28px] md:text-[36px]"
             >
-              Five modules. One{" "}
-              <span className="display-italic">system of record.</span>
+              Accounting and project management.{" "}
+              <span className="display-italic">Built for contractors.</span>
             </h2>
           </div>
 

@@ -1,4 +1,3 @@
-import Link from "next/link";
 import {
   getOpenInvoiceProjections,
   getWeeklyForecast,
@@ -71,53 +70,22 @@ export default async function ForecastPage({
   ).length;
 
   return (
-    <main className="min-h-screen bg-gray-50">
-      <header className="bg-vance-navy text-white">
-        <div className="mx-auto max-w-[1400px] px-6 py-6">
-          <div className="flex items-center justify-between">
-            <div>
-              <Link href="/" className="text-xs text-gray-200 hover:underline">
-                ← Home
-              </Link>
-              <h1 className="mt-1 text-2xl font-bold">Collections Forecast</h1>
-              <p className="mt-1 text-sm text-gray-200">
-                Three scenarios projected from each open invoice. Best case
-                respects due dates. Realistic uses customer avg DTP. Worst uses
-                customer P90 DTP.
-              </p>
-            </div>
-            <div className="flex gap-2">
-              <Link
-                href="/dashboard"
-                className="rounded bg-white/10 px-3 py-1.5 text-xs font-semibold text-white hover:bg-white/20"
-              >
-                Dashboard
-              </Link>
-              <Link
-                href="/customers"
-                className="rounded bg-white/10 px-3 py-1.5 text-xs font-semibold text-white hover:bg-white/20"
-              >
-                Customer List
-              </Link>
-              <Link
-                href="/rankings"
-                className="rounded bg-white/10 px-3 py-1.5 text-xs font-semibold text-white hover:bg-white/20"
-              >
-                Rankings
-              </Link>
-            </div>
-          </div>
-        </div>
-      </header>
-
-      <section className="mx-auto max-w-[1400px] px-6 py-6 space-y-6">
+    <section className="mx-auto max-w-[1400px] px-6 py-12 space-y-8 md:py-16">
+      <div className="flex items-baseline justify-between gap-6">
+        <span className="eyebrow">Forecast</span>
+        <p className="max-w-[480px] text-right text-[14px] text-[var(--muted)]">
+          Three scenarios projected from each open invoice. Best case respects
+          due dates. Realistic uses customer avg DTP. Worst uses customer P90
+          DTP.
+        </p>
+      </div>
         {/* KPIs + as-of date input */}
         <div className="grid grid-cols-1 gap-4 lg:grid-cols-5">
           <div className="rounded border border-gray-200 bg-white p-4 shadow-sm">
             <div className="text-xs uppercase tracking-wide text-gray-500">
               Total Open Balance
             </div>
-            <div className="mt-1 text-2xl font-bold text-vance-navy tabular-nums">
+            <div className="mt-1 text-2xl font-bold text-[var(--foreground)] tabular-nums">
               {fmtCurrency0(totalOpenBalance)}
             </div>
           </div>
@@ -125,7 +93,7 @@ export default async function ForecastPage({
             <div className="text-xs uppercase tracking-wide text-gray-500">
               Open Invoices
             </div>
-            <div className="mt-1 text-2xl font-bold text-vance-navy tabular-nums">
+            <div className="mt-1 text-2xl font-bold text-[var(--foreground)] tabular-nums">
               {fmtInt(openInvoiceCount)}
             </div>
           </div>
@@ -133,7 +101,7 @@ export default async function ForecastPage({
             <div className="text-xs uppercase tracking-wide text-gray-500">
               Customers w/ Open Balance
             </div>
-            <div className="mt-1 text-2xl font-bold text-vance-navy tabular-nums">
+            <div className="mt-1 text-2xl font-bold text-[var(--foreground)] tabular-nums">
               {fmtInt(customersWithOpen)}
             </div>
           </div>
@@ -141,7 +109,7 @@ export default async function ForecastPage({
             <div className="text-xs uppercase tracking-wide text-gray-500">
               Invoices Without Payment History
             </div>
-            <div className="mt-1 text-2xl font-bold text-vance-navy tabular-nums">
+            <div className="mt-1 text-2xl font-bold text-[var(--foreground)] tabular-nums">
               {fmtInt(invoicesWithoutHistory)}
             </div>
           </div>
@@ -175,7 +143,7 @@ export default async function ForecastPage({
 
         {/* Reconciliation block */}
         <div className="rounded border border-gray-200 bg-white shadow-sm">
-          <div className="border-b border-gray-100 bg-vance-navy rounded-t px-4 py-2 text-white">
+          <div className="border-b border-gray-100 bg-[var(--foreground)] text-[var(--background)] rounded-t px-4 py-2">
             <h2 className="text-sm font-semibold">AR vs Aging Reconciliation</h2>
           </div>
           <table className="w-full text-sm">
@@ -221,7 +189,7 @@ export default async function ForecastPage({
 
         {/* Open invoice detail */}
         <div className="rounded border border-gray-200 bg-white shadow-sm">
-          <div className="border-b border-gray-100 bg-vance-navy rounded-t px-4 py-2 text-white">
+          <div className="border-b border-gray-100 bg-[var(--foreground)] text-[var(--background)] rounded-t px-4 py-2">
             <h2 className="text-sm font-semibold">
               Open Invoice Detail ({fmtInt(openInvoiceCount)} invoices)
             </h2>
@@ -308,7 +276,6 @@ export default async function ForecastPage({
           overdue={overdue}
           totalLabel="90-Day Total"
         />
-      </section>
-    </main>
+    </section>
   );
 }

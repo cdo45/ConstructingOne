@@ -1,93 +1,85 @@
 import Link from "next/link";
 
-type Accent = "navy" | "orange" | "good" | "teal";
-
-const cards: Array<{
-  href: string;
-  title: string;
-  description: string;
-  accent: Accent;
-}> = [
-  {
-    href: "/upload",
-    title: "Upload",
-    description:
-      "Upload Foundation AR detail and aging reports. New uploads replace prior data.",
-    accent: "navy",
-  },
+const cards = [
   {
     href: "/dashboard",
     title: "Dashboard",
-    description: "KPIs, top customers chart, and yearly billing vs collections.",
-    accent: "navy",
+    description:
+      "KPIs, top customers chart, and yearly billing vs collections.",
   },
   {
     href: "/customers",
     title: "Customers",
     description:
       "Sortable table of every customer with payment metrics and aging buckets.",
-    accent: "orange",
   },
   {
     href: "/rankings",
     title: "Rankings",
     description:
       "Top 20 customers by speed, reliability, and volume-weighted score.",
-    accent: "teal",
   },
   {
     href: "/forecast",
     title: "Forecast",
     description:
       "Three-scenario collections forecast with weekly, monthly, and daily views.",
-    accent: "good",
+  },
+  {
+    href: "/upload",
+    title: "Upload",
+    description:
+      "Upload Foundation AR detail and aging reports. New uploads replace prior data.",
   },
 ];
 
-const accentClasses: Record<Accent, string> = {
-  navy: "border-t-4 border-vance-navy",
-  orange: "border-t-4 border-vance-orange",
-  good: "border-t-4 border-vance-good",
-  teal: "border-t-4 border-teal-700",
-};
-
-const titleClasses: Record<Accent, string> = {
-  navy: "text-vance-navy",
-  orange: "text-vance-orange",
-  good: "text-vance-good",
-  teal: "text-teal-700",
-};
-
 export default function HomePage() {
   return (
-    <main className="min-h-screen bg-gray-50">
-      <header className="bg-vance-navy text-white">
-        <div className="mx-auto max-w-6xl px-6 py-8">
-          <h1 className="text-3xl font-bold">Vance AR Analysis Tool</h1>
-          <p className="mt-2 text-sm text-gray-200">
-            Accounts Receivable analytics for Vance Corp.
-          </p>
-        </div>
-      </header>
+    <section
+      aria-labelledby="ar-reports-heading"
+      className="mx-auto max-w-[1200px] px-6 py-20 md:px-10 md:py-28"
+    >
+      <div className="mb-12 flex items-baseline justify-between gap-6 md:mb-16">
+        <span className="eyebrow">AR Reports</span>
+        <h1
+          id="ar-reports-heading"
+          className="display max-w-[560px] text-right text-[24px] leading-[1.1] sm:text-[28px] md:text-[36px]"
+        >
+          Accounts receivable.{" "}
+          <span className="display-italic">Aging, ranked, forecast.</span>
+        </h1>
+      </div>
 
-      <section className="mx-auto max-w-6xl px-6 py-12">
-        <div className="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5">
-          {cards.map((card) => (
+      <ul className="feature-grid" role="list">
+        {cards.map((card, i) => (
+          <li key={card.title} role="listitem" className="contents">
             <Link
-              key={card.title}
               href={card.href}
-              className={`block rounded-md bg-white p-6 shadow-sm transition hover:shadow-md ${accentClasses[card.accent]}`}
+              className="feature-card group"
+              aria-label={`${card.title} — ${card.description}`}
             >
-              <h2
-                className={`text-xl font-semibold ${titleClasses[card.accent]}`}
+              <span
+                className="mono text-[12px] tracking-tight text-[var(--muted)]"
+                aria-hidden="true"
               >
+                {String(i + 1).padStart(2, "0")}
+              </span>
+              <h2 className="mt-8 text-[22px] font-medium leading-tight tracking-[-0.01em] text-[var(--foreground)] md:text-[24px]">
                 {card.title}
               </h2>
-              <p className="mt-2 text-sm text-gray-600">{card.description}</p>
+              <p className="mt-3 text-[14.5px] font-light leading-[1.55] text-[var(--muted)] md:text-[15px]">
+                {card.description}
+              </p>
+              <span
+                className="arrow mt-auto pt-8 text-[18px] text-[var(--foreground)]"
+                aria-hidden="true"
+              >
+                →
+              </span>
             </Link>
-          ))}
-        </div>
-      </section>
-    </main>
+          </li>
+        ))}
+      </ul>
+    </section>
   );
 }

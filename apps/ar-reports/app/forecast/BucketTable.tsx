@@ -85,7 +85,7 @@ export default function BucketTable({
 
   return (
     <div className="overflow-hidden rounded border border-gray-200 bg-white shadow-sm">
-      <div className="border-b border-gray-100 bg-vance-navy rounded-t px-4 py-2 text-white">
+      <div className="border-b border-gray-100 bg-[var(--foreground)] text-[var(--background)] rounded-t px-4 py-2">
         <h2 className="text-sm font-semibold">{title}</h2>
       </div>
       <div className="overflow-x-auto">

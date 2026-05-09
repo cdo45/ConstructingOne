@@ -49,13 +49,11 @@ function LatestPanel({ label, info }: { label: string; info: LatestInfo | null }
 function UploadSection({
   title,
   endpoint,
-  accent,
   latest,
   onSuccess,
 }: {
   title: string;
   endpoint: string;
-  accent: "navy" | "orange";
   latest: LatestInfo | null;
   onSuccess: () => void;
 }) {
@@ -93,11 +91,9 @@ function UploadSection({
     }
   };
 
-  const accentClass = accent === "navy" ? "bg-vance-navy" : "bg-vance-orange";
-
   return (
-    <section className="rounded border border-gray-200 bg-white shadow-sm">
-      <header className={`${accentClass} rounded-t px-4 py-2 text-white`}>
+    <section className="border border-[var(--hairline)] bg-[var(--background)]">
+      <header className="bg-[var(--foreground)] text-[var(--background)] px-4 py-2">
         <h2 className="text-sm font-semibold">{title}</h2>
       </header>
       <form onSubmit={handleSubmit} className="p-4">
@@ -105,12 +101,12 @@ function UploadSection({
           type="file"
           accept=".xlsx"
           onChange={(e) => setFile(e.target.files?.[0] ?? null)}
-          className="block w-full text-sm text-gray-700 file:mr-4 file:rounded file:border-0 file:bg-gray-200 file:px-3 file:py-1 file:text-sm file:font-semibold hover:file:bg-gray-300"
+          className="block w-full text-sm text-[var(--foreground)] file:mr-4 file:rounded-none file:border file:border-[var(--hairline)] file:bg-[var(--surface)] file:px-3 file:py-1 file:text-sm file:font-semibold hover:file:bg-[var(--background)]"
         />
         <button
           type="submit"
           disabled={!file || status.kind === "uploading"}
-          className={`mt-3 rounded px-4 py-1.5 text-sm font-semibold text-white ${accentClass} disabled:cursor-not-allowed disabled:opacity-50`}
+          className="cone-button cone-button--primary mt-4"
         >
           {status.kind === "uploading" ? "Uploading..." : "Upload"}
         </button>
@@ -162,14 +158,12 @@ export default function UploadForm() {
       <UploadSection
         title="Upload AR Detail Report"
         endpoint="/api/uploads/ar-detail"
-        accent="navy"
         latest={loaded ? latest.ar_detail : null}
         onSuccess={refresh}
       />
       <UploadSection
         title="Upload AR Aging Report"
         endpoint="/api/uploads/ar-aging"
-        accent="orange"
         latest={loaded ? latest.ar_aging : null}
         onSuccess={refresh}
       />

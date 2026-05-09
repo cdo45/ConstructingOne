@@ -1,4 +1,3 @@
-import Link from "next/link";
 import {
   getAllCustomerStats,
   type CustomerStats,
@@ -157,102 +156,64 @@ export default async function RankingsPage({
   const volume = volumeRanking(qualifying);
 
   return (
-    <main className="min-h-screen bg-gray-50">
-      <header className="bg-vance-navy text-white">
-        <div className="mx-auto max-w-[1400px] px-6 py-6">
-          <div className="flex items-center justify-between">
-            <div>
-              <Link href="/" className="text-xs text-gray-200 hover:underline">
-                ← Home
-              </Link>
-              <h1 className="mt-1 text-2xl font-bold">Customer Rankings</h1>
-              <p className="mt-1 text-sm text-gray-200">
-                Top 20 customers by speed, reliability, and volume-weighted
-                score. Customers with fewer than {min} invoices are excluded.
-              </p>
-            </div>
-            <div className="flex gap-2">
-              <Link
-                href="/dashboard"
-                className="rounded bg-white/10 px-3 py-1.5 text-xs font-semibold text-white hover:bg-white/20"
-              >
-                Dashboard
-              </Link>
-              <Link
-                href="/customers"
-                className="rounded bg-white/10 px-3 py-1.5 text-xs font-semibold text-white hover:bg-white/20"
-              >
-                Customer List
-              </Link>
-              <Link
-                href="/forecast"
-                className="rounded bg-white/10 px-3 py-1.5 text-xs font-semibold text-white hover:bg-white/20"
-              >
-                Forecast →
-              </Link>
-            </div>
-          </div>
+    <section className="mx-auto max-w-[1400px] px-6 py-12 space-y-6 md:py-16">
+      <div className="flex items-baseline justify-between gap-6">
+        <span className="eyebrow">Rankings</span>
+        <p className="max-w-[480px] text-right text-[14px] text-[var(--muted)]">
+          Top 20 customers by speed, reliability, and volume-weighted score.
+          Customers with fewer than {min} invoices are excluded.
+        </p>
+      </div>
+      <form
+        method="get"
+        className="flex flex-wrap items-end gap-5 border border-[var(--hairline)] bg-[var(--background)] px-5 py-4"
+      >
+        <div className="w-32">
+          <label htmlFor="min" className="eyebrow cone-label">
+            Min invoices
+          </label>
+          <input
+            id="min"
+            name="min"
+            type="number"
+            defaultValue={min}
+            min={1}
+            step={1}
+            className="cone-input"
+          />
         </div>
-      </header>
-
-      <section className="mx-auto max-w-[1400px] px-6 py-6 space-y-5">
-        <form
-          method="get"
-          className="flex flex-wrap items-end gap-3 rounded border border-gray-200 bg-white px-4 py-3 shadow-sm"
-        >
-          <div>
-            <label
-              htmlFor="min"
-              className="block text-xs font-semibold uppercase tracking-wide text-gray-600"
-            >
-              Minimum invoice count to qualify
-            </label>
-            <input
-              id="min"
-              name="min"
-              type="number"
-              defaultValue={min}
-              min={1}
-              step={1}
-              className="mt-1 w-32 rounded border border-gray-300 px-3 py-1.5 text-sm shadow-sm focus:border-vance-navy focus:outline-none focus:ring-1 focus:ring-vance-navy"
-            />
-          </div>
-          <button
-            type="submit"
-            className="rounded bg-vance-navy px-4 py-1.5 text-sm font-semibold text-white hover:opacity-90"
-          >
-            Apply
-          </button>
-          <span className="text-xs text-gray-500">
-            {qualifying.length} of {all.length} customers qualify at min ={" "}
-            {min}.
-          </span>
-        </form>
+        <button type="submit" className="cone-button cone-button--primary">
+          Apply
+        </button>
+        <span className="text-xs text-[var(--muted)]">
+          {qualifying.length} of {all.length} customers qualify at min ={" "}
+          {min}.
+        </span>
+      </form>
 
         <div className="grid grid-cols-1 gap-5 lg:grid-cols-3">
           <RankingCard
             title="Speed"
             subtitle="Lowest median days to pay"
             metricLabel="Median DTP"
-            headerClass="bg-vance-navy"
+            headerClass="bg-[var(--foreground)] text-[var(--background)]"
             rows={speed}
           />
           <RankingCard
             title="Reliability"
             subtitle="Lowest stddev = most predictable"
             metricLabel="StdDev"
-            headerClass="bg-teal-700"
+            headerClass="bg-[var(--foreground)] text-[var(--background)]"
             rows={reliability}
           />
           <RankingCard
             title="Volume-Weighted"
             subtitle="lifetime billed ÷ (median DTP + 1)"
             metricLabel="Score"
-            headerClass="bg-vance-orange"
+            headerClass="bg-[var(--foreground)] text-[var(--background)]"
             rows={volume}
           />
         </div>
-      </section>
-    </main>
+    </section>
   );
 }

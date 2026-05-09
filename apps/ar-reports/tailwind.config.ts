@@ -9,13 +9,19 @@ const config: Config = {
   theme: {
     extend: {
       colors: {
-        vance: {
-          navy: "#1F4E78",
-          orange: "#C65911",
+        // Heatmap palette — green/yellow/red conditional formatting only.
+        // UI chrome (headers, KPIs, buttons) uses the design-system tokens
+        // (var(--foreground), var(--background), var(--hairline)).
+        brand: {
           good: "#63BE7B",
           mid: "#FFEB84",
           bad: "#F8696B",
         },
+      },
+      fontFamily: {
+        sans: ["var(--font-sans)", "system-ui", "sans-serif"],
+        serif: ["var(--font-serif)", "ui-serif", "Georgia", "serif"],
+        mono: ["var(--font-mono)", "ui-monospace", "monospace"],
       },
     },
   },

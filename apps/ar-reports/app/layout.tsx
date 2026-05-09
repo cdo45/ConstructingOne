@@ -1,9 +1,14 @@
 import type { Metadata } from "next";
+import Link from "next/link";
+import { serif, sans, mono } from "@constructingone/ui/fonts";
+import { PageShell } from "@constructingone/ui";
+import "@constructingone/ui/styles";
 import "./globals.css";
 
 export const metadata: Metadata = {
-  title: "Vance AR Analysis Tool",
-  description: "Accounts Receivable customer analysis for Vance Corp",
+  title: "AR Reports — ConstructingOne",
+  description:
+    "Customer aging, collections forecasting, and billed-vs-collected analysis for contractors.",
 };
 
 export default function RootLayout({
@@ -12,8 +17,35 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="en">
-      <body>{children}</body>
+    <html
+      lang="en"
+      className={`${serif.variable} ${sans.variable} ${mono.variable}`}
+    >
+      <body>
+        <PageShell
+          nav={
+            <>
+              <li>
+                <Link href="/dashboard">Dashboard</Link>
+              </li>
+              <li>
+                <Link href="/customers">Customers</Link>
+              </li>
+              <li>
+                <Link href="/rankings">Rankings</Link>
+              </li>
+              <li>
+                <Link href="/forecast">Forecast</Link>
+              </li>
+              <li>
+                <Link href="/upload">Upload</Link>
+              </li>
+            </>
+          }
+        >
+          {children}
+        </PageShell>
+      </body>
     </html>
   );
 }
