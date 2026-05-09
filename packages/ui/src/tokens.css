@@ -160,3 +160,229 @@ a {
     opacity: 1;
   }
 }
+
+/* === COMPONENTS === */
+
+/* Button — primary fills, secondary is outlined; both invert on hover */
+.cone-button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  height: 44px;
+  padding: 0 24px;
+  font-family: var(--font-sans);
+  font-size: 14px;
+  font-weight: 500;
+  letter-spacing: -0.005em;
+  border: 1px solid var(--foreground);
+  border-radius: 0;
+  cursor: pointer;
+  transition: background-color var(--transition-base),
+    color var(--transition-base), border-color var(--transition-base);
+}
+.cone-button--primary {
+  background: var(--foreground);
+  color: var(--background);
+}
+.cone-button--primary:hover:not(:disabled) {
+  background: var(--background);
+  color: var(--foreground);
+}
+.cone-button--secondary {
+  background: transparent;
+  color: var(--foreground);
+  border-color: var(--hairline);
+}
+.cone-button--secondary:hover:not(:disabled) {
+  background: var(--foreground);
+  color: var(--background);
+  border-color: var(--foreground);
+}
+.cone-button:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+.cone-button:focus-visible {
+  outline-offset: 4px;
+}
+
+/* Card — editorial hairline block; href adds hover */
+.cone-card {
+  display: block;
+  background: var(--background);
+  border: 1px solid var(--hairline);
+  padding: 32px;
+  transition: background-color var(--transition-base),
+    border-color var(--transition-base);
+}
+@media (min-width: 1024px) {
+  .cone-card {
+    padding: 40px;
+  }
+}
+.cone-card--interactive:hover {
+  background: var(--surface);
+  border-color: var(--hairline-strong);
+}
+
+/* Input — minimal, hairline bottom only */
+.cone-input {
+  width: 100%;
+  display: block;
+  background: transparent;
+  border: 0;
+  border-bottom: 1px solid var(--hairline);
+  border-radius: 0;
+  padding: 8px 0;
+  font-family: var(--font-sans);
+  font-size: 15px;
+  color: var(--foreground);
+  transition: border-color var(--transition-base);
+}
+.cone-input::placeholder {
+  color: var(--muted);
+}
+.cone-input:hover {
+  border-bottom-color: var(--hairline-strong);
+}
+.cone-input:focus {
+  outline: none;
+  border-bottom-color: var(--foreground);
+}
+.cone-input:focus-visible {
+  outline: none;
+}
+.cone-input:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+/* Label — eyebrow style, sits above an Input */
+.cone-label {
+  display: inline-block;
+  margin-bottom: 8px;
+}
+
+/* Table — hairline rows, generous padding, no stripes */
+.cone-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-family: var(--font-sans);
+  font-size: 14px;
+}
+.cone-table thead th {
+  font-weight: 500;
+  color: var(--muted);
+  font-size: var(--text-eyebrow);
+  text-transform: uppercase;
+  letter-spacing: 0.14em;
+  text-align: left;
+  padding: 14px 20px;
+  border-bottom: 1px solid var(--hairline);
+}
+.cone-table tbody td {
+  padding: 16px 20px;
+  border-bottom: 1px solid var(--hairline);
+  color: var(--foreground);
+  vertical-align: top;
+}
+.cone-table tbody tr:last-child td {
+  border-bottom: none;
+}
+.cone-table tbody tr:hover td {
+  background: var(--surface);
+}
+/* Numeric cells get mono tabular digits + right alignment */
+.cone-table th.mono,
+.cone-table td.mono {
+  text-align: right;
+  font-feature-settings: "tnum";
+}
+
+/* PageShell header */
+.cone-header {
+  border-bottom: 1px solid var(--hairline);
+}
+.cone-header__inner {
+  margin: 0 auto;
+  display: flex;
+  height: 64px;
+  max-width: var(--content-max);
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 24px;
+}
+@media (min-width: 768px) {
+  .cone-header__inner {
+    height: 80px;
+    padding: 0 40px;
+  }
+}
+.cone-nav {
+  display: flex;
+  align-items: center;
+  gap: 28px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  font-size: 14px;
+  color: var(--muted);
+}
+@media (min-width: 768px) {
+  .cone-nav {
+    gap: 36px;
+  }
+}
+.cone-nav a {
+  transition: color var(--transition-base);
+}
+.cone-nav a:hover,
+.cone-nav a:focus-visible {
+  color: var(--foreground);
+}
+
+/* PageShell footer */
+.cone-footer {
+  border-top: 1px solid var(--hairline);
+}
+.cone-footer__inner {
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  max-width: var(--content-max);
+  padding: 40px 24px;
+  font-size: 13px;
+  color: var(--muted);
+}
+@media (min-width: 768px) {
+  .cone-footer__inner {
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    padding: 48px 40px;
+  }
+}
+.cone-footer__brand {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+.cone-footer__wordmark {
+  color: var(--foreground);
+}
+.cone-footer__links {
+  list-style: none;
+  display: flex;
+  align-items: center;
+  gap: 28px;
+  margin: 0;
+  padding: 0;
+}
+.cone-footer__links a {
+  transition: color var(--transition-base);
+}
+.cone-footer__links a:hover,
+.cone-footer__links a:focus-visible {
+  color: var(--foreground);
+}
