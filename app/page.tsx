@@ -24,20 +24,13 @@ const features = [
   },
   {
     index: "04",
-    title: "Fixed Assets",
-    description:
-      "Equipment register with depreciation schedules, location tracking, and disposal workflows. Built for fleets that move.",
-    href: "/fixed-assets",
-  },
-  {
-    index: "05",
     title: "WIP Reports",
     description:
       "Percentage-of-completion schedules with full audit trail, variance analysis, and executive summaries. The schedule your CFO wants and your auditor accepts.",
     href: "/wip-report",
   },
   {
-    index: "06",
+    index: "05",
     title: "AR Billing",
     description:
       "AIA-style billing, change order management, and invoice tracking. From contract to collection without the spreadsheet sprawl.",

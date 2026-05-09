@@ -8,7 +8,15 @@
     "**/*.css"
   ],
   "exports": {
-    ".": "./src/index.ts"
+    ".": {
+      "types": "./src/index.ts",
+      "default": "./src/index.ts"
+    },
+    "./fonts": {
+      "types": "./src/fonts.ts",
+      "default": "./src/fonts.ts"
+    },
+    "./styles": "./src/tokens.css"
   },
   "peerDependencies": {
     "next": ">=14",
