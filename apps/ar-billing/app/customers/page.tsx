@@ -1,7 +1,6 @@
 "use client";
 
 import { useState, useEffect, useCallback } from "react";
-import SiteHeader from "@/app/components/SiteHeader";
 
 // ─── Types ────────────────────────────────────────────────────────────────────
 interface Customer {
@@ -22,11 +21,11 @@ interface Toast { msg: string; type: "success" | "error"; }
 type SortCol = "company_name" | "job_count" | "total_billed_ytd" | "last_entry_date";
 
 // ─── Constants ────────────────────────────────────────────────────────────────
-const NAVY   = "#1F3864";
-const TEAL   = "#1F6B6B";
-const ORANGE = "#C8102E";
-const DKGREEN = "#1E6B1E";
-const LTGRAY = "#F2F2F2";
+const NAVY   = "var(--foreground)";
+const TEAL   = "var(--foreground)";
+const ORANGE = "#dc2626";
+const DKGREEN = "#15803d";
+const LTGRAY = "var(--surface)";
 
 const EMPTY_FORM = {
   company_name: "", contact_name: "", contact_email: "",
@@ -148,7 +147,6 @@ export default function CustomersPage() {
         </div>
       )}
 
-      <SiteHeader />
 
       <div className="max-w-7xl mx-auto px-4 py-8">
 
@@ -265,7 +263,7 @@ export default function CustomersPage() {
                 <div key={field}>
                   <label className="block text-xs font-bold uppercase tracking-widest mb-1.5"
                     style={{ color: TEAL }}>
-                    {label} {required && <span className="text-red-400">*</span>}
+                    {label} {required && <span className="text-red-600-400">*</span>}
                   </label>
                   <input type="text"
                     value={form[field]}

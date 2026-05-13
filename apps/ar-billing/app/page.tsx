@@ -4,7 +4,6 @@ import { useState, useEffect, useRef, useCallback } from "react";
 import {
   BarChart, Bar, XAxis, YAxis, Tooltip, ResponsiveContainer, Cell,
 } from "recharts";
-import SiteHeader from "@/app/components/SiteHeader";
 
 // ─── Types ────────────────────────────────────────────────────────────────────
 interface Job {
@@ -53,11 +52,11 @@ const DAYS = ["sun","mon","tue","wed","thu","fri","sat"] as const;
 type Day = typeof DAYS[number];
 const DAY_LABELS = ["SUN","MON","TUE","WED","THU","FRI","SAT"];
 const EMPTY_AMOUNTS: DayAmounts = { sun:"",mon:"",tue:"",wed:"",thu:"",fri:"",sat:"" };
-const NAVY   = "#1F3864";
-const TEAL   = "#1F6B6B";
-const ORANGE = "#C8102E";
-const DKGREEN = "#1E6B1E";
-const LTGRAY  = "#F2F2F2";
+const NAVY   = "var(--foreground)";
+const TEAL   = "var(--foreground)";
+const ORANGE = "#dc2626";
+const DKGREEN = "#15803d";
+const LTGRAY  = "var(--surface)";
 
 const STATUS_ORDER = ["pending","invoiced","received"] as const;
 type EntryStatus = typeof STATUS_ORDER[number];
@@ -66,7 +65,7 @@ const STATUS_BADGE_BG:   Record<string,string> = { pending:"#DBEAFE", invoiced:"
 const STATUS_BADGE_CLR:  Record<string,string> = { pending:"#1e40af", invoiced:"#92400e", received:"#14532d" };
 const STATUS_FORM_BG:    Record<string,string> = { pending:"#DBEAFE", invoiced:"#FEF9C3", received:"#DCFCE7" };
 const STATUS_FORM_BORDER:Record<string,string> = { pending:"#93c5fd", invoiced:"#fbbf24", received:"#86efac" };
-const STATUS_FORM_TEXT:  Record<string,string> = { pending:NAVY,      invoiced:"#78350f", received:DKGREEN  };
+const STATUS_FORM_TEXT:  Record<string,string> = { pending:NAVY,      invoiced:"var(--muted)", received:DKGREEN  };
 
 // ─── Helpers ──────────────────────────────────────────────────────────────────
 function getSundayOfWeek(d: Date): Date {
@@ -517,7 +516,6 @@ export default function EntryForm() {
         </div>
       )}
 
-      <SiteHeader />
 
       {/* DB status + date bar */}
       <div className="w-full px-4 md:px-6 lg:px-8 pt-3 flex items-center justify-between text-xs text-gray-500">
@@ -569,7 +567,7 @@ export default function EntryForm() {
                   onFocus={()=>setShowDrop(true)}
                   className="w-full border-2 border-gray-300 rounded-xl px-5 py-4 text-lg
                              focus:outline-none disabled:bg-gray-50 disabled:text-gray-400"
-                  style={{borderColor:showDrop&&(filtered.length>0||showAddNew)?"#1F6B6B":undefined}}
+                  style={{borderColor:showDrop&&(filtered.length>0||showAddNew)?"var(--foreground)":undefined}}
                 />
 
                 {/* Dropdown */}
@@ -586,7 +584,7 @@ export default function EntryForm() {
                     {showAddNew && (
                       <li onMouseDown={pickCustom}
                         className="px-5 py-3 cursor-pointer border-t-2 flex items-center gap-2 font-semibold text-sm"
-                        style={{borderColor:TEAL,color:TEAL,background:"#f0fafa"}}>
+                        style={{borderColor:TEAL,color:TEAL,background:"var(--surface)"}}>
                         <span className="text-lg font-bold">+</span>
                         <span className="uppercase tracking-wider">Add New Job:</span>{" "}<span className="font-bold" style={{color:NAVY}}>{query}</span>
                       </li>
@@ -604,18 +602,18 @@ export default function EntryForm() {
                     <p className="text-sm text-gray-600 mt-0.5">{selectedJob.company_name}</p>
                   </div>
                   <button type="button" onClick={clearJob}
-                    className="text-xs font-bold uppercase tracking-wider text-gray-400 hover:text-red-500 px-3 py-1 border rounded-lg hover:border-red-400 transition"
+                    className="text-xs font-bold uppercase tracking-wider text-gray-400 hover:text-red-700-600-500 px-3 py-1 border rounded-lg hover:border-red-600-400 transition"
                     style={{borderColor:"#d1d5db"}}>Change</button>
                 </div>
               )}
 
               {/* Custom job fields */}
               {isCustom && (
-                <div className="mt-3 p-4 rounded-xl border-2 space-y-3" style={{borderColor:TEAL,background:"#f0fafa"}}>
+                <div className="mt-3 p-4 rounded-xl border-2 space-y-3" style={{borderColor:TEAL,background:"var(--surface)"}}>
                   <div className="flex items-center justify-between mb-1">
                     <p className="text-sm font-bold" style={{color:NAVY}}>New Job: <span style={{color:TEAL}}>{query}</span></p>
                     <button type="button" onClick={cancelCustom}
-                      className="text-xs font-bold uppercase tracking-wider text-gray-400 hover:text-red-500 transition">✕ Cancel</button>
+                      className="text-xs font-bold uppercase tracking-wider text-gray-400 hover:text-red-700-600-500 transition">✕ Cancel</button>
                   </div>
                   <div ref={companyRef} className="relative">
                     <input type="text" placeholder="Company Name (required)"
@@ -623,7 +621,7 @@ export default function EntryForm() {
                       onChange={e=>{setCustomCompany(e.target.value);setShowCompanyDrop(true);}}
                       onFocus={()=>setShowCompanyDrop(true)}
                       className="w-full border-2 border-gray-300 rounded-lg px-4 py-3 text-base focus:outline-none"
-                      style={{borderColor:customCompany?"#1F6B6B":undefined}}
+                      style={{borderColor:customCompany?"var(--foreground)":undefined}}
                     />
                     {showCompanyDrop && customCompany && (() => {
                       const filtered = companies.filter(c=>c.toLowerCase().includes(customCompany.toLowerCase())).slice(0,10);
@@ -650,7 +648,7 @@ export default function EntryForm() {
             {/* Work Description */}
             <div>
               <label className="block text-xs font-bold uppercase tracking-widest mb-2" style={{color:TEAL}}>
-                Work Description <span className="text-red-400 font-bold">*</span>
+                Work Description <span className="text-red-600-400 font-bold">*</span>
               </label>
               <input type="text" placeholder="Describe the work performed…"
                 value={workDesc} onChange={e=>setWorkDesc(e.target.value)}
@@ -724,7 +722,7 @@ export default function EntryForm() {
               {/* FIX 5: Duplicate invoice warning */}
               {duplicateInvoice && (
                 <div className="mt-2 flex items-start gap-2 px-3 py-2.5 rounded-lg text-xs font-medium"
-                  style={{background:"#fefce8",border:"1px solid #fbbf24",color:"#78350f"}}>
+                  style={{background:"#fefce8",border:"1px solid #fbbf24",color:"var(--muted)"}}>
                   <span className="flex-shrink-0 font-bold text-sm leading-none">⚠</span>
                   <span>
                     Invoice <span className="font-bold">{invoiceNum}</span> already used this week for{" "}
@@ -1109,7 +1107,7 @@ export default function EntryForm() {
                           style={{color:onlyStatus?"#6b7280":ORANGE}}>
                           Reason for Edit {onlyStatus
                             ? <span className="font-normal normal-case tracking-normal text-gray-400 ml-1">— status change does not require a reason</span>
-                            : <span className="text-red-500">*</span>}
+                            : <span className="text-red-600-500">*</span>}
                         </label>
                         <input type="text" value={editReason} onChange={e=>setEditReason(e.target.value)}
                           placeholder={onlyStatus ? "Optional" : "Required — describe why this entry is being changed"}
@@ -1305,7 +1303,7 @@ export default function EntryForm() {
                 return (
                   <button key={en.id} type="button"
                     onClick={()=>{setCellSelectModal(null);openEditEntry(en);}}
-                    className="w-full text-left rounded-xl border-2 px-4 py-3 hover:border-teal-400 transition-colors"
+                    className="w-full text-left rounded-xl border-2 px-4 py-3 hover:border-[var(--foreground)]-400 transition-colors"
                     style={{borderColor:"#e5e7eb"}}>
                     <div className="font-semibold text-sm" style={{color:NAVY}}>{en.work_description||"(no description)"}</div>
                     <div className="flex gap-4 mt-1 text-xs text-gray-500">
