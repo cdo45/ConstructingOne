@@ -92,11 +92,13 @@ function calcItem(item: LineItemWithJob) {
   };
 }
 
-// Distinct palette for pie slices
+// Distinct palette for pie slices: greyscale base with a single warm-taupe
+// accent for the supplementary slots. Hues 5-7 stay semantic (green/orange/red)
+// for ratio/status visualizations.
 const PIE_COLORS = [
   "#0a0a0a", "#404040", "#737373", "#a3a3a3",
   "#16A34A", "#D97706", "#B22234", "#737373",
-  "#0a0a0a", "#7C3AED", "#0891B2", "#BE185D",
+  "#3a3a3a", "#665e54", "#8c7f74", "#b2a89e",
 ];
 
 // ── Component ─────────────────────────────────────────────────────────────────
