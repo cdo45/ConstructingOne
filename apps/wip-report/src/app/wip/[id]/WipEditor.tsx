@@ -690,7 +690,7 @@ export default function WipEditor({
       if (adj1290 < 0) out += `<div class="je-line"><span class="je-tag">DR</span><span>401510 WIP Revenue Recognized</span><span class="neg ml">$${d(Math.abs(adj1290))}</span></div><div class="je-line"><span class="je-tag">CR</span><span>1290 Costs in Excess of Billings</span><span class="neg ml">$${d(Math.abs(adj1290))}</span></div>`;
       if (adj2030 > 0) out += `<div class="je-line"><span class="je-tag">DR</span><span>2030 Billings in Excess of Costs</span><span class="pos ml">$${d(adj2030)}</span></div><div class="je-line"><span class="je-tag">CR</span><span>401510 WIP Revenue Recognized</span><span class="pos ml">$${d(adj2030)}</span></div>`;
       if (adj2030 < 0) out += `<div class="je-line"><span class="je-tag">DR</span><span>401510 WIP Revenue Recognized</span><span class="neg ml">$${d(Math.abs(adj2030))}</span></div><div class="je-line"><span class="je-tag">CR</span><span>2030 Billings in Excess of Costs</span><span class="neg ml">$${d(Math.abs(adj2030))}</span></div>`;
-      if (adj1290 === 0 && adj2030 === 0) out = `<div style="color:#9CA3AF;font-style:italic">No adjustments needed.</div>`;
+      if (adj1290 === 0 && adj2030 === 0) out = `<div style="color:#737373;font-style:italic">No adjustments needed.</div>`;
       out += `<div class="je-sep"></div><div class="je-line"><span class="je-tag"></span><span>Net P&amp;L Impact</span><span class="${netAdj >= 0 ? "pos" : "neg"} ml">${netAdj >= 0 ? "+" : "-"}$${d(Math.abs(netAdj))}</span></div>`;
       return out;
     }
@@ -703,39 +703,39 @@ export default function WipEditor({
 <title>WIP Report — ${dateStr}</title>
 <style>
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
-body{font-family:Arial,Helvetica,sans-serif;font-size:9pt;color:#1A1A1A;background:#fff;padding:20px}
-.header{text-align:center;margin-bottom:18px;padding-bottom:10px;border-bottom:2px solid #1B2A4A}
-.header h1{font-size:15pt;font-weight:bold;letter-spacing:3px;color:#1B2A4A}
-.header h2{font-size:10.5pt;margin:3px 0;color:#374151}
-.header p{font-size:7.5pt;color:#6B7280;margin:2px 0}
+body{font-family:Arial,Helvetica,sans-serif;font-size:9pt;color:#0a0a0a;background:#fff;padding:20px}
+.header{text-align:center;margin-bottom:18px;padding-bottom:10px;border-bottom:2px solid #0a0a0a}
+.header h1{font-size:15pt;font-weight:bold;letter-spacing:3px;color:#0a0a0a}
+.header h2{font-size:10.5pt;margin:3px 0;color:#0a0a0a}
+.header p{font-size:7.5pt;color:#737373;margin:2px 0}
 .section{margin-bottom:18px}
-.sec-title{font-size:9pt;font-weight:bold;color:#1B2A4A;text-transform:uppercase;letter-spacing:.5px;margin-bottom:5px;padding-bottom:2px;border-bottom:1px solid #1B2A4A}
-.sub-title{font-size:8.5pt;font-weight:bold;color:#374151;margin:8px 0 4px}
+.sec-title{font-size:9pt;font-weight:bold;color:#0a0a0a;text-transform:uppercase;letter-spacing:.5px;margin-bottom:5px;padding-bottom:2px;border-bottom:1px solid #0a0a0a}
+.sub-title{font-size:8.5pt;font-weight:bold;color:#0a0a0a;margin:8px 0 4px}
 table{width:100%;border-collapse:collapse;font-size:7.5pt}
-th{background:#1B2A4A;color:#fff;padding:3px 5px;text-align:left;white-space:nowrap}
+th{background:#0a0a0a;color:#fff;padding:3px 5px;text-align:left;white-space:nowrap}
 th.num{text-align:right}
-td{padding:2.5px 5px;border-bottom:1px solid #E5E7EB;color:#1A1A1A}
+td{padding:2.5px 5px;border-bottom:1px solid #e5e5e5;color:#0a0a0a}
 td.num{text-align:right;font-family:'Courier New',monospace;white-space:nowrap}
 td.mono{font-family:'Courier New',monospace}
-tr:nth-child(even) td{background:#F9FAFB}
-tr.total-row td{font-weight:bold;border-top:2px solid #1B2A4A;border-bottom:none;background:#F3F4F6!important}
+tr:nth-child(even) td{background:#fafafa}
+tr.total-row td{font-weight:bold;border-top:2px solid #0a0a0a;border-bottom:none;background:#fafafa!important}
 .pos{color:#16A34A}
 .neg{color:#B22234}
 .two-col{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-bottom:14px}
-.sum-box{border:1px solid #E5E7EB;padding:9px;border-radius:3px}
-.sum-box h3{font-size:8pt;font-weight:bold;color:#1B2A4A;margin-bottom:5px}
+.sum-box{border:1px solid #e5e5e5;padding:9px;border-radius:3px}
+.sum-box h3{font-size:8pt;font-weight:bold;color:#0a0a0a;margin-bottom:5px}
 .sum-row{display:flex;justify-content:space-between;font-size:8pt;margin-bottom:2px}
-.sum-row .lbl{color:#374151}
+.sum-row .lbl{color:#0a0a0a}
 .sum-row .val{font-family:'Courier New',monospace;font-weight:bold}
-.sum-row.tot{border-top:1px solid #E5E7EB;padding-top:3px;margin-top:3px}
+.sum-row.tot{border-top:1px solid #e5e5e5;padding-top:3px;margin-top:3px}
 .je-mono{font-family:'Courier New',monospace;font-size:8pt}
 .je-line{display:flex;gap:12px;margin-bottom:2px;font-family:'Courier New',monospace;font-size:8pt}
-.je-tag{color:#6B7280;width:18px;flex-shrink:0}
+.je-tag{color:#737373;width:18px;flex-shrink:0}
 .ml{margin-left:auto}
-.je-sep{border-top:1px solid #E5E7EB;margin:4px 0}
+.je-sep{border-top:1px solid #e5e5e5;margin:4px 0}
 .metrics-row{display:flex;flex-wrap:wrap;gap:14px}
-.metric{flex:1;min-width:160px;border:1px solid #E5E7EB;padding:7px 10px;border-radius:3px}
-.metric .m-lbl{font-size:7.5pt;color:#6B7280;margin-bottom:2px}
+.metric{flex:1;min-width:160px;border:1px solid #e5e5e5;padding:7px 10px;border-radius:3px}
+.metric .m-lbl{font-size:7.5pt;color:#737373;margin-bottom:2px}
 .metric .m-val{font-size:10pt;font-weight:bold;font-family:'Courier New',monospace}
 .badge-red{color:#B22234;font-weight:bold}
 .badge-yellow{color:#D97706;font-weight:bold}
@@ -749,7 +749,7 @@ tr.total-row td{font-weight:bold;border-top:2px solid #1B2A4A;border-bottom:none
 <body>
 
 <div class="header">
-  <h1>VANCE CORPORATION</h1>
+  <h1>CONSTRUCTINGONE</h1>
   <h2>Work-in-Progress Schedule</h2>
   <p>Period Ending: ${dateStr}</p>
   <p>Generated: ${generatedAt}</p>
@@ -842,8 +842,8 @@ ${inProgress.length > 0 && completed.length > 0 ? `
 </tr>
 <tr class="total-row">
   <td>401510 WIP Revenue (net)</td>
-  <td class="num" style="color:#9CA3AF">—</td>
-  <td class="num" style="color:#9CA3AF">—</td>
+  <td class="num" style="color:#737373">—</td>
+  <td class="num" style="color:#737373">—</td>
   <td class="num ${netAdj >= 0 ? "pos" : "neg"}">${netAdj >= 0 ? "+" : "-"}$${d(Math.abs(netAdj))}</td>
 </tr>
 </tbody>
@@ -870,7 +870,7 @@ ${fadedJobs.length > 0 ? `
 <div class="sub-title" style="margin-top:10px">GP Fade Detail (jobs with &gt;5pt decline)</div>
 <table>
 <thead><tr><th>Job #</th><th>Job Name</th><th class="num">Original GP%</th><th class="num">Current GP%</th><th class="num">Δ GP%</th></tr></thead>
-<tbody>${fadedJobs.map((j, i) => `<tr${i % 2 === 1 ? ' style="background:#F9FAFB"' : ""}><td class="mono">${j.num}</td><td>${j.name}</td><td class="num">${j.orig.toFixed(1)}%</td><td class="num">${j.curr.toFixed(1)}%</td><td class="num neg">${j.delta.toFixed(1)}%</td></tr>`).join("")}
+<tbody>${fadedJobs.map((j, i) => `<tr${i % 2 === 1 ? ' style="background:#fafafa"' : ""}><td class="mono">${j.num}</td><td>${j.name}</td><td class="num">${j.orig.toFixed(1)}%</td><td class="num">${j.curr.toFixed(1)}%</td><td class="num neg">${j.delta.toFixed(1)}%</td></tr>`).join("")}
 </tbody>
 </table>` : ""}
 </div>
@@ -922,10 +922,10 @@ ${fadedJobs.length > 0 ? `
   const netAdj  = adj1290 + adj2030;
 
   // ── Styles ────────────────────────────────────────────────────────────────
-  const th = "px-2 py-2.5 text-left text-xs font-semibold whitespace-nowrap text-white bg-[#1B2A4A]";
-  const td = "px-2 py-1.5 whitespace-nowrap text-xs text-right text-[#1A1A1A]";
-  const tdL = "px-2 py-1.5 whitespace-nowrap text-xs text-[#1A1A1A]";
-  const inp = "w-full bg-white border border-[#E5E7EB] text-[#1A1A1A] text-right rounded px-2 py-0.5 text-xs focus:outline-none focus:border-[#1B2A4A]";
+  const th = "px-2 py-2.5 text-left text-xs font-semibold whitespace-nowrap text-white bg-[var(--foreground)]";
+  const td = "px-2 py-1.5 whitespace-nowrap text-xs text-right text-[var(--foreground)]";
+  const tdL = "px-2 py-1.5 whitespace-nowrap text-xs text-[var(--foreground)]";
+  const inp = "w-full bg-white border border-[var(--hairline)] text-[var(--foreground)] text-right rounded px-2 py-0.5 text-xs focus:outline-none focus:border-[var(--foreground)]";
   const COLS = 25;
 
   // Final render sort — numeric dash-split: 2024-07 < 2025-01 < 2025-05
@@ -943,27 +943,27 @@ ${fadedJobs.length > 0 ? `
         {/* ── Header ─────────────────────────────────────────────────────── */}
         <div className="flex flex-wrap items-start justify-between gap-4 mb-6">
           <div>
-            <Link href="/wip" className="text-xs text-[#6B7280] hover:text-[#1B2A4A] mb-1 inline-block">
+            <Link href="/wip" className="text-xs text-[var(--muted)] hover:text-[var(--foreground)] mb-1 inline-block">
               ← WIP Reports
             </Link>
-            <h1 className="text-2xl font-bold text-[#1A1A1A]">
+            <h1 className="text-2xl font-bold text-[var(--foreground)]">
               WIP Report{" "}
-              <span className="text-[#1B2A4A]">{toDateStr(report.period_date)}</span>
+              <span className="text-[var(--foreground)]">{toDateStr(report.period_date)}</span>
             </h1>
           </div>
           <div className="flex items-center gap-4 pt-1">
-            {saving && <span className="text-xs text-[#6B7280]">Saving…</span>}
+            {saving && <span className="text-xs text-[var(--muted)]">Saving…</span>}
             {!saving && saveStatus === "saved"  && <span className="text-xs text-[#16A34A]">Saved</span>}
             {!saving && saveStatus === "error"  && <span className="text-xs text-[#B22234]">Save failed</span>}
             <Link
               href={`/wip/${report.id}/summary`}
-              className="border border-[#E5E7EB] text-[#6B7280] hover:border-[#1B2A4A] hover:text-[#1B2A4A] px-4 py-2 rounded text-sm font-medium transition-colors"
+              className="border border-[var(--hairline)] text-[var(--muted)] hover:border-[var(--foreground)] hover:text-[var(--foreground)] px-4 py-2 rounded text-sm font-medium transition-colors"
             >
               Summary
             </Link>
             <button
               onClick={handlePrint}
-              className="border border-[#E5E7EB] text-[#6B7280] hover:border-[#1B2A4A] hover:text-[#1B2A4A] px-4 py-2 rounded text-sm font-medium transition-colors"
+              className="border border-[var(--hairline)] text-[var(--muted)] hover:border-[var(--foreground)] hover:text-[var(--foreground)] px-4 py-2 rounded text-sm font-medium transition-colors"
             >
               Print Report
             </button>
@@ -985,7 +985,7 @@ ${fadedJobs.length > 0 ? `
               <>
                 <button
                   onClick={handleCancelEdit}
-                  className="border border-[#E5E7EB] text-[#6B7280] hover:border-[#1B2A4A] hover:text-[#1B2A4A] px-4 py-2 rounded text-sm font-medium transition-colors"
+                  className="border border-[var(--hairline)] text-[var(--muted)] hover:border-[var(--foreground)] hover:text-[var(--foreground)] px-4 py-2 rounded text-sm font-medium transition-colors"
                 >
                   Cancel Edit
                 </button>
@@ -1001,7 +1001,7 @@ ${fadedJobs.length > 0 ? `
             {isEditable && (
               <button
                 onClick={handleOpenAddJob}
-                className="border border-[#1B2A4A] text-[#1B2A4A] hover:bg-[#1B2A4A]/10 px-4 py-2 rounded text-sm font-medium transition-colors"
+                className="border border-[var(--foreground)] text-[var(--foreground)] hover:bg-[var(--foreground)]/10 px-4 py-2 rounded text-sm font-medium transition-colors"
               >
                 + Add Job
               </button>
@@ -1027,7 +1027,7 @@ ${fadedJobs.length > 0 ? `
         )}
 
         {/* ── Main table ─────────────────────────────────────────────────── */}
-        <div className="overflow-x-auto rounded-lg border border-[#E5E7EB] mb-8">
+        <div className="overflow-x-auto rounded-lg border border-[var(--hairline)] mb-8">
           <table className="text-sm border-collapse" style={{ minWidth: "max-content" }}>
             <thead>
               <tr>
@@ -1071,14 +1071,14 @@ ${fadedJobs.length > 0 ? `
                   },
                   i
                 ) => {
-                  const rowBg    = i % 2 === 0 ? "bg-white" : "bg-[#F9FAFB]";
-                  const stickyBg = i % 2 === 0 ? "bg-white" : "bg-[#F9FAFB]";
+                  const rowBg    = i % 2 === 0 ? "bg-white" : "bg-[var(--surface)]";
+                  const stickyBg = i % 2 === 0 ? "bg-white" : "bg-[var(--surface)]";
                   const ouColor  = overUnder >= 0 ? "text-[#16A34A]" : "text-[#B22234]";
                   const priorOpen = expandedPrior.has(item.id);
 
                   return (
                     <Fragment key={item.id}>
-                      <tr className={`${rowBg} hover:bg-[#F3F4F6] transition-colors`}>
+                      <tr className={`${rowBg} hover:bg-[var(--surface)] transition-colors`}>
                         {/* Sticky: Job # */}
                         <td className={`${tdL} sticky left-0 z-10 ${stickyBg} font-mono`}>
                           {item.job_number}
@@ -1250,7 +1250,7 @@ ${fadedJobs.length > 0 ? `
                         {/* Notes */}
                         <td className="px-1 py-0.5">
                           {!isEditable ? (
-                            <span className="text-xs text-[#6B7280] whitespace-nowrap">
+                            <span className="text-xs text-[var(--muted)] whitespace-nowrap">
                               {editable.notes || "—"}
                             </span>
                           ) : (
@@ -1259,7 +1259,7 @@ ${fadedJobs.length > 0 ? `
                               value={editable.notes}
                               onChange={(e) => handleChange(item.id, "notes", e.target.value)}
                               placeholder="—"
-                              className="w-full bg-white border border-[#E5E7EB] text-[#1A1A1A] rounded px-2 py-0.5 text-xs focus:outline-none focus:border-[#1B2A4A]"
+                              className="w-full bg-white border border-[var(--hairline)] text-[var(--foreground)] rounded px-2 py-0.5 text-xs focus:outline-none focus:border-[var(--foreground)]"
                             />
                           )}
                         </td>
@@ -1269,7 +1269,7 @@ ${fadedJobs.length > 0 ? `
                           <button
                             onClick={() => togglePrior(item.id)}
                             title="Toggle prior year"
-                            className="text-xs text-[#1B2A4A] hover:text-[#243d70] font-bold px-1"
+                            className="text-xs text-[var(--foreground)] hover:text-[var(--foreground)] font-bold px-1"
                           >
                             {priorOpen ? "▼" : "▶"}
                           </button>
@@ -1278,10 +1278,10 @@ ${fadedJobs.length > 0 ? `
 
                       {/* Prior year expanded row */}
                       {priorOpen && (
-                        <tr className="bg-[#F9FAFB] border-t border-b border-[#E5E7EB]">
+                        <tr className="bg-[var(--surface)] border-t border-b border-[var(--hairline)]">
                           <td colSpan={COLS} className="px-5 py-3">
                             <div className="flex flex-wrap items-end gap-6">
-                              <span className="text-xs text-[#6B7280] font-semibold uppercase tracking-wider">
+                              <span className="text-xs text-[var(--muted)] font-semibold uppercase tracking-wider">
                                 Prior Year
                                 {item.is_prior_locked && (
                                   <span className="ml-2 text-amber-600 normal-case">● locked</span>
@@ -1296,9 +1296,9 @@ ${fadedJobs.length > 0 ? `
                                 ] as const
                               ).map(([field, label]) => (
                                 <div key={field}>
-                                  <div className="text-xs text-[#6B7280] mb-1">{label}</div>
+                                  <div className="text-xs text-[var(--muted)] mb-1">{label}</div>
                                   {item.is_prior_locked || !isEditable ? (
-                                    <span className="text-xs text-[#1A1A1A] font-mono">
+                                    <span className="text-xs text-[var(--foreground)] font-mono">
                                       ${fmt$(toNum(editable[field]))}
                                     </span>
                                   ) : (
@@ -1306,7 +1306,7 @@ ${fadedJobs.length > 0 ? `
                                       type="text"
                                       value={editable[field]}
                                       onChange={(e) => handleChange(item.id, field, e.target.value)}
-                                      className="w-36 bg-white border border-[#E5E7EB] text-[#1A1A1A] rounded px-2 py-1 text-xs focus:outline-none focus:border-[#1B2A4A] text-right"
+                                      className="w-36 bg-white border border-[var(--hairline)] text-[var(--foreground)] rounded px-2 py-1 text-xs focus:outline-none focus:border-[var(--foreground)] text-right"
                                     />
                                   )}
                                 </div>
@@ -1326,62 +1326,62 @@ ${fadedJobs.length > 0 ? `
         {/* ── Summary panels ─────────────────────────────────────────────── */}
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8">
           {/* Billings position */}
-          <div className="bg-white rounded-lg border border-[#E5E7EB] shadow-sm p-5">
-            <h2 className="text-[#1B2A4A] font-semibold mb-4">Billings Position</h2>
+          <div className="bg-white rounded-lg border border-[var(--hairline)] shadow-sm p-5">
+            <h2 className="text-[var(--foreground)] font-semibold mb-4">Billings Position</h2>
             <dl className="space-y-2 text-sm">
               <div className="flex justify-between">
-                <dt className="text-[#374151]">
+                <dt className="text-[var(--foreground)]">
                   Period Net O/U{" "}
-                  <span className="text-[#6B7280] text-xs">(this period only)</span>
+                  <span className="text-[var(--muted)] text-xs">(this period only)</span>
                 </dt>
                 <dd className={`font-mono font-semibold ${netPeriodOverUnder >= 0 ? "text-[#16A34A]" : "text-[#B22234]"}`}>
                   {netPeriodOverUnder >= 0 ? "+" : ""}${fmt$(netPeriodOverUnder)}
                 </dd>
               </div>
-              <div className="flex justify-between border-t border-[#E5E7EB] pt-2">
-                <dt className="text-[#374151]">
+              <div className="flex justify-between border-t border-[var(--hairline)] pt-2">
+                <dt className="text-[var(--foreground)]">
                   Underbillings{" "}
-                  <span className="text-[#6B7280] text-xs">(Asset — Acct 1290)</span>
+                  <span className="text-[var(--muted)] text-xs">(Asset — Acct 1290)</span>
                 </dt>
                 <dd className="font-mono text-[#16A34A] font-semibold">${fmt$(totalUnderbillings)}</dd>
               </div>
               <div className="flex justify-between">
-                <dt className="text-[#374151]">
+                <dt className="text-[var(--foreground)]">
                   Overbillings{" "}
-                  <span className="text-[#6B7280] text-xs">(Liability — Acct 2030)</span>
+                  <span className="text-[var(--muted)] text-xs">(Liability — Acct 2030)</span>
                 </dt>
                 <dd className="font-mono text-[#B22234] font-semibold">${fmt$(totalOverbillings)}</dd>
               </div>
-              <div className="flex justify-between border-t border-[#E5E7EB] pt-2">
-                <dt className="font-semibold text-[#1A1A1A]">
+              <div className="flex justify-between border-t border-[var(--hairline)] pt-2">
+                <dt className="font-semibold text-[var(--foreground)]">
                   Cumulative Net O/U{" "}
-                  <span className="text-[#6B7280] text-xs font-normal">(drives JE)</span>
+                  <span className="text-[var(--muted)] text-xs font-normal">(drives JE)</span>
                 </dt>
                 <dd className={`font-mono font-semibold ${netOverUnder >= 0 ? "text-[#16A34A]" : "text-[#B22234]"}`}>
                   {netOverUnder >= 0 ? "+" : ""}${fmt$(netOverUnder)}
                 </dd>
               </div>
               <div className="flex justify-between">
-                <dt className="text-[#374151]">Total Backlog</dt>
-                <dd className="font-mono text-[#1A1A1A]">${fmt$(totalBacklog)}</dd>
+                <dt className="text-[var(--foreground)]">Total Backlog</dt>
+                <dd className="font-mono text-[var(--foreground)]">${fmt$(totalBacklog)}</dd>
               </div>
             </dl>
           </div>
 
           {/* Current year */}
-          <div className="bg-white rounded-lg border border-[#E5E7EB] shadow-sm p-5">
-            <h2 className="text-[#1B2A4A] font-semibold mb-4">Current Year</h2>
+          <div className="bg-white rounded-lg border border-[var(--hairline)] shadow-sm p-5">
+            <h2 className="text-[var(--foreground)] font-semibold mb-4">Current Year</h2>
             <dl className="space-y-2 text-sm">
               <div className="flex justify-between">
-                <dt className="text-[#374151]">CY Revenue</dt>
-                <dd className="font-mono text-[#1A1A1A]">${fmt$(totalCyRevenue)}</dd>
+                <dt className="text-[var(--foreground)]">CY Revenue</dt>
+                <dd className="font-mono text-[var(--foreground)]">${fmt$(totalCyRevenue)}</dd>
               </div>
               <div className="flex justify-between">
-                <dt className="text-[#374151]">CY Costs</dt>
-                <dd className="font-mono text-[#1A1A1A]">${fmt$(totalCyCosts)}</dd>
+                <dt className="text-[var(--foreground)]">CY Costs</dt>
+                <dd className="font-mono text-[var(--foreground)]">${fmt$(totalCyCosts)}</dd>
               </div>
-              <div className="flex justify-between border-t border-[#E5E7EB] pt-2">
-                <dt className="font-semibold text-[#1A1A1A]">CY Gross Profit</dt>
+              <div className="flex justify-between border-t border-[var(--hairline)] pt-2">
+                <dt className="font-semibold text-[var(--foreground)]">CY Gross Profit</dt>
                 <dd className={`font-mono font-semibold ${totalCyGp >= 0 ? "text-[#16A34A]" : "text-[#B22234]"}`}>
                   ${fmt$(totalCyGp)}
                 </dd>
@@ -1391,32 +1391,32 @@ ${fadedJobs.length > 0 ? `
         </div>
 
         {/* ── Journal entry ──────────────────────────────────────────────── */}
-        <div className="bg-white rounded-lg border border-[#E5E7EB] shadow-sm p-5 mb-6">
-          <h2 className="text-[#1B2A4A] font-semibold mb-4">Auto-Generated Journal Entry</h2>
+        <div className="bg-white rounded-lg border border-[var(--hairline)] shadow-sm p-5 mb-6">
+          <h2 className="text-[var(--foreground)] font-semibold mb-4">Auto-Generated Journal Entry</h2>
 
           {/* Reconciliation table */}
           <div className="overflow-x-auto mb-5">
             <table className="w-full text-xs">
               <thead>
-                <tr className="border-b border-[#E5E7EB]">
-                  <th className="text-left py-2 pr-6 text-[#6B7280] font-semibold">Account</th>
-                  <th className="text-right py-2 px-4 text-[#6B7280] font-semibold">Current Balance</th>
-                  <th className="text-right py-2 px-4 text-[#6B7280] font-semibold">Should Be</th>
-                  <th className="text-right py-2 pl-4 text-[#6B7280] font-semibold">Adjustment</th>
+                <tr className="border-b border-[var(--hairline)]">
+                  <th className="text-left py-2 pr-6 text-[var(--muted)] font-semibold">Account</th>
+                  <th className="text-right py-2 px-4 text-[var(--muted)] font-semibold">Current Balance</th>
+                  <th className="text-right py-2 px-4 text-[var(--muted)] font-semibold">Should Be</th>
+                  <th className="text-right py-2 pl-4 text-[var(--muted)] font-semibold">Adjustment</th>
                 </tr>
               </thead>
-              <tbody className="divide-y divide-[#E5E7EB]">
+              <tbody className="divide-y divide-[#e5e5e5]">
                 <tr>
-                  <td className="py-2 pr-6 text-[#374151]">1290 Costs in Excess</td>
-                  <td className="py-2 px-4 text-right font-mono text-[#1A1A1A]">${fmt$(gl1290Num)}</td>
+                  <td className="py-2 pr-6 text-[var(--foreground)]">1290 Costs in Excess</td>
+                  <td className="py-2 px-4 text-right font-mono text-[var(--foreground)]">${fmt$(gl1290Num)}</td>
                   <td className="py-2 px-4 text-right font-mono text-[#16A34A]">${fmt$(totalUnderbillings)}</td>
                   <td className={`py-2 pl-4 text-right font-mono font-semibold ${adj1290 >= 0 ? "text-[#16A34A]" : "text-[#B22234]"}`}>
                     {adj1290 >= 0 ? "+" : "-"}${fmt$(Math.abs(adj1290))}
                   </td>
                 </tr>
                 <tr>
-                  <td className="py-2 pr-6 text-[#374151]">2030 Billings in Excess</td>
-                  <td className="py-2 px-4 text-right font-mono text-[#1A1A1A]">
+                  <td className="py-2 pr-6 text-[var(--foreground)]">2030 Billings in Excess</td>
+                  <td className="py-2 px-4 text-right font-mono text-[var(--foreground)]">
                     {gl2030Num < 0 ? "-" : ""}${fmt$(Math.abs(gl2030Num))}
                   </td>
                   <td className="py-2 px-4 text-right font-mono text-[#B22234]">-${fmt$(totalOverbillings)}</td>
@@ -1424,10 +1424,10 @@ ${fadedJobs.length > 0 ? `
                     {adj2030 >= 0 ? "+" : "-"}${fmt$(Math.abs(adj2030))}
                   </td>
                 </tr>
-                <tr className="border-t-2 border-[#E5E7EB]">
-                  <td className="py-2 pr-6 text-[#374151]">401510 WIP Revenue</td>
-                  <td className="py-2 px-4 text-right font-mono text-[#9CA3AF]">—</td>
-                  <td className="py-2 px-4 text-right font-mono text-[#9CA3AF]">—</td>
+                <tr className="border-t-2 border-[var(--hairline)]">
+                  <td className="py-2 pr-6 text-[var(--foreground)]">401510 WIP Revenue</td>
+                  <td className="py-2 px-4 text-right font-mono text-[var(--muted)]">—</td>
+                  <td className="py-2 px-4 text-right font-mono text-[var(--muted)]">—</td>
                   <td className={`py-2 pl-4 text-right font-mono font-bold ${netAdj >= 0 ? "text-[#16A34A]" : "text-[#B22234]"}`}>
                     {netAdj >= 0 ? "+" : "-"}${fmt$(Math.abs(netAdj))}
                   </td>
@@ -1441,13 +1441,13 @@ ${fadedJobs.length > 0 ? `
             {adj1290 > 0 && (
               <>
                 <div className="flex gap-6">
-                  <span className="text-[#6B7280] w-6">DR</span>
-                  <span className="flex-1 text-[#1A1A1A]">1290 Costs in Excess of Billings</span>
+                  <span className="text-[var(--muted)] w-6">DR</span>
+                  <span className="flex-1 text-[var(--foreground)]">1290 Costs in Excess of Billings</span>
                   <span className="text-[#16A34A]">${fmt$(adj1290)}</span>
                 </div>
                 <div className="flex gap-6">
-                  <span className="text-[#6B7280] w-6">CR</span>
-                  <span className="flex-1 text-[#1A1A1A]">401510 WIP Revenue Recognized</span>
+                  <span className="text-[var(--muted)] w-6">CR</span>
+                  <span className="flex-1 text-[var(--foreground)]">401510 WIP Revenue Recognized</span>
                   <span className="text-[#16A34A]">${fmt$(adj1290)}</span>
                 </div>
               </>
@@ -1455,13 +1455,13 @@ ${fadedJobs.length > 0 ? `
             {adj1290 < 0 && (
               <>
                 <div className="flex gap-6">
-                  <span className="text-[#6B7280] w-6">DR</span>
-                  <span className="flex-1 text-[#1A1A1A]">401510 WIP Revenue Recognized</span>
+                  <span className="text-[var(--muted)] w-6">DR</span>
+                  <span className="flex-1 text-[var(--foreground)]">401510 WIP Revenue Recognized</span>
                   <span className="text-[#B22234]">${fmt$(Math.abs(adj1290))}</span>
                 </div>
                 <div className="flex gap-6">
-                  <span className="text-[#6B7280] w-6">CR</span>
-                  <span className="flex-1 text-[#1A1A1A]">1290 Costs in Excess of Billings</span>
+                  <span className="text-[var(--muted)] w-6">CR</span>
+                  <span className="flex-1 text-[var(--foreground)]">1290 Costs in Excess of Billings</span>
                   <span className="text-[#B22234]">${fmt$(Math.abs(adj1290))}</span>
                 </div>
               </>
@@ -1469,13 +1469,13 @@ ${fadedJobs.length > 0 ? `
             {adj2030 > 0 && (
               <>
                 <div className={`flex gap-6${adj1290 !== 0 ? " mt-2" : ""}`}>
-                  <span className="text-[#6B7280] w-6">DR</span>
-                  <span className="flex-1 text-[#1A1A1A]">2030 Billings in Excess of Costs</span>
+                  <span className="text-[var(--muted)] w-6">DR</span>
+                  <span className="flex-1 text-[var(--foreground)]">2030 Billings in Excess of Costs</span>
                   <span className="text-[#16A34A]">${fmt$(adj2030)}</span>
                 </div>
                 <div className="flex gap-6">
-                  <span className="text-[#6B7280] w-6">CR</span>
-                  <span className="flex-1 text-[#1A1A1A]">401510 WIP Revenue Recognized</span>
+                  <span className="text-[var(--muted)] w-6">CR</span>
+                  <span className="flex-1 text-[var(--foreground)]">401510 WIP Revenue Recognized</span>
                   <span className="text-[#16A34A]">${fmt$(adj2030)}</span>
                 </div>
               </>
@@ -1483,23 +1483,23 @@ ${fadedJobs.length > 0 ? `
             {adj2030 < 0 && (
               <>
                 <div className={`flex gap-6${adj1290 !== 0 ? " mt-2" : ""}`}>
-                  <span className="text-[#6B7280] w-6">DR</span>
-                  <span className="flex-1 text-[#1A1A1A]">401510 WIP Revenue Recognized</span>
+                  <span className="text-[var(--muted)] w-6">DR</span>
+                  <span className="flex-1 text-[var(--foreground)]">401510 WIP Revenue Recognized</span>
                   <span className="text-[#B22234]">${fmt$(Math.abs(adj2030))}</span>
                 </div>
                 <div className="flex gap-6">
-                  <span className="text-[#6B7280] w-6">CR</span>
-                  <span className="flex-1 text-[#1A1A1A]">2030 Billings in Excess of Costs</span>
+                  <span className="text-[var(--muted)] w-6">CR</span>
+                  <span className="flex-1 text-[var(--foreground)]">2030 Billings in Excess of Costs</span>
                   <span className="text-[#B22234]">${fmt$(Math.abs(adj2030))}</span>
                 </div>
               </>
             )}
             {adj1290 === 0 && adj2030 === 0 && (
-              <span className="text-[#9CA3AF] italic">No adjustments needed.</span>
+              <span className="text-[var(--muted)] italic">No adjustments needed.</span>
             )}
-            <div className="flex gap-6 border-t border-[#E5E7EB] pt-2 mt-2">
-              <span className="text-[#9CA3AF] w-6" />
-              <span className="text-[#6B7280] flex-1">Net P&amp;L Impact</span>
+            <div className="flex gap-6 border-t border-[var(--hairline)] pt-2 mt-2">
+              <span className="text-[var(--muted)] w-6" />
+              <span className="text-[var(--muted)] flex-1">Net P&amp;L Impact</span>
               <span className={netAdj >= 0 ? "text-[#16A34A]" : "text-[#B22234]"}>
                 {netAdj >= 0 ? "+" : "-"}${fmt$(Math.abs(netAdj))}
               </span>
@@ -1508,26 +1508,26 @@ ${fadedJobs.length > 0 ? `
         </div>
 
         {/* ── GL Reconciliation ──────────────────────────────────────────── */}
-        <div className="bg-white rounded-lg border border-[#E5E7EB] shadow-sm p-5 mb-8">
-          <h2 className="text-[#1B2A4A] font-semibold mb-4">GL Reconciliation</h2>
+        <div className="bg-white rounded-lg border border-[var(--hairline)] shadow-sm p-5 mb-8">
+          <h2 className="text-[var(--foreground)] font-semibold mb-4">GL Reconciliation</h2>
           <div className="flex flex-wrap gap-8">
             <div>
-              <div className="text-xs text-[#6B7280] mb-1.5">Current GL Balance — 1290 Costs in Excess</div>
+              <div className="text-xs text-[var(--muted)] mb-1.5">Current GL Balance — 1290 Costs in Excess</div>
               {!isEditable ? (
-                <span className="text-sm font-mono text-[#1A1A1A]">${fmt$(gl1290Num)}</span>
+                <span className="text-sm font-mono text-[var(--foreground)]">${fmt$(gl1290Num)}</span>
               ) : (
                 <input
                   type="text"
                   value={gl1290Str}
                   onChange={(e) => handleGlChange("1290", e.target.value)}
-                  className="w-48 bg-white border border-[#E5E7EB] text-[#1A1A1A] rounded px-3 py-1.5 text-sm focus:outline-none focus:border-[#1B2A4A] text-right"
+                  className="w-48 bg-white border border-[var(--hairline)] text-[var(--foreground)] rounded px-3 py-1.5 text-sm focus:outline-none focus:border-[var(--foreground)] text-right"
                 />
               )}
             </div>
             <div>
-              <div className="text-xs text-[#6B7280] mb-1.5">Current GL Balance — 2030 Billings in Excess</div>
+              <div className="text-xs text-[var(--muted)] mb-1.5">Current GL Balance — 2030 Billings in Excess</div>
               {!isEditable ? (
-                <span className="text-sm font-mono text-[#1A1A1A]">
+                <span className="text-sm font-mono text-[var(--foreground)]">
                   {gl2030Num < 0 ? "-" : ""}${fmt$(Math.abs(gl2030Num))}
                 </span>
               ) : (
@@ -1535,13 +1535,13 @@ ${fadedJobs.length > 0 ? `
                   type="text"
                   value={gl2030Str}
                   onChange={(e) => handleGlChange("2030", e.target.value)}
-                  className="w-48 bg-white border border-[#E5E7EB] text-[#1A1A1A] rounded px-3 py-1.5 text-sm focus:outline-none focus:border-[#1B2A4A] text-right"
+                  className="w-48 bg-white border border-[var(--hairline)] text-[var(--foreground)] rounded px-3 py-1.5 text-sm focus:outline-none focus:border-[var(--foreground)] text-right"
                 />
               )}
             </div>
           </div>
           {isEditable && (
-            <p className="text-xs text-[#9CA3AF] mt-3">
+            <p className="text-xs text-[var(--muted)] mt-3">
               Enter the current GL balance for each account. For 2030 (credit/liability), enter a negative value (e.g., -12,500.00).
             </p>
           )}
@@ -1551,13 +1551,13 @@ ${fadedJobs.length > 0 ? `
         <div className="flex justify-end gap-3 mb-8">
           <Link
             href={`/wip/${report.id}/summary`}
-            className="border border-[#E5E7EB] text-[#6B7280] hover:border-[#1B2A4A] hover:text-[#1B2A4A] px-5 py-2.5 rounded text-sm font-medium transition-colors"
+            className="border border-[var(--hairline)] text-[var(--muted)] hover:border-[var(--foreground)] hover:text-[var(--foreground)] px-5 py-2.5 rounded text-sm font-medium transition-colors"
           >
             Summary
           </Link>
           <button
             onClick={handlePrint}
-            className="border border-[#E5E7EB] text-[#6B7280] hover:border-[#1B2A4A] hover:text-[#1B2A4A] px-5 py-2.5 rounded text-sm font-medium transition-colors"
+            className="border border-[var(--hairline)] text-[var(--muted)] hover:border-[var(--foreground)] hover:text-[var(--foreground)] px-5 py-2.5 rounded text-sm font-medium transition-colors"
           >
             Print Report
           </button>
@@ -1565,7 +1565,7 @@ ${fadedJobs.length > 0 ? `
             <>
               <button
                 onClick={handleCancelEdit}
-                className="border border-[#E5E7EB] text-[#6B7280] hover:border-[#1B2A4A] hover:text-[#1B2A4A] px-5 py-2.5 rounded text-sm font-medium transition-colors"
+                className="border border-[var(--hairline)] text-[var(--muted)] hover:border-[var(--foreground)] hover:text-[var(--foreground)] px-5 py-2.5 rounded text-sm font-medium transition-colors"
               >
                 Cancel Edit
               </button>
@@ -1591,7 +1591,7 @@ ${fadedJobs.length > 0 ? `
 
         {/* ── Audit Log (finalized only) ──────────────────────────────────── */}
         {isFinalized && (
-          <div className="bg-white rounded-lg border border-[#E5E7EB] shadow-sm mb-4">
+          <div className="bg-white rounded-lg border border-[var(--hairline)] shadow-sm mb-4">
             <button
               onClick={() => {
                 const next = !auditExpanded;
@@ -1600,38 +1600,38 @@ ${fadedJobs.length > 0 ? `
               }}
               className="w-full flex items-center justify-between px-5 py-4 text-left"
             >
-              <span className="font-semibold text-[#1B2A4A]">Audit Log</span>
-              <span className="text-[#6B7280] text-sm">{auditExpanded ? "▲ Collapse" : "▶ Expand"}</span>
+              <span className="font-semibold text-[var(--foreground)]">Audit Log</span>
+              <span className="text-[var(--muted)] text-sm">{auditExpanded ? "▲ Collapse" : "▶ Expand"}</span>
             </button>
             {auditExpanded && (
-              <div className="border-t border-[#E5E7EB] px-5 py-4">
+              <div className="border-t border-[var(--hairline)] px-5 py-4">
                 {!auditLoaded ? (
-                  <p className="text-sm text-[#6B7280]">Loading…</p>
+                  <p className="text-sm text-[var(--muted)]">Loading…</p>
                 ) : auditEntries.length === 0 ? (
-                  <p className="text-sm text-[#6B7280]">No audit entries yet.</p>
+                  <p className="text-sm text-[var(--muted)]">No audit entries yet.</p>
                 ) : (
                   <div className="overflow-x-auto">
                     <table className="w-full text-xs">
                       <thead>
-                        <tr className="border-b border-[#E5E7EB]">
-                          <th className="text-left py-2 pr-4 text-[#6B7280] font-semibold">Date / Time</th>
-                          <th className="text-left py-2 pr-4 text-[#6B7280] font-semibold">Job</th>
-                          <th className="text-left py-2 pr-4 text-[#6B7280] font-semibold">Field</th>
-                          <th className="text-right py-2 pr-4 text-[#6B7280] font-semibold">Old Value</th>
-                          <th className="text-right py-2 text-[#6B7280] font-semibold">New Value</th>
+                        <tr className="border-b border-[var(--hairline)]">
+                          <th className="text-left py-2 pr-4 text-[var(--muted)] font-semibold">Date / Time</th>
+                          <th className="text-left py-2 pr-4 text-[var(--muted)] font-semibold">Job</th>
+                          <th className="text-left py-2 pr-4 text-[var(--muted)] font-semibold">Field</th>
+                          <th className="text-right py-2 pr-4 text-[var(--muted)] font-semibold">Old Value</th>
+                          <th className="text-right py-2 text-[var(--muted)] font-semibold">New Value</th>
                         </tr>
                       </thead>
-                      <tbody className="divide-y divide-[#E5E7EB]">
+                      <tbody className="divide-y divide-[#e5e5e5]">
                         {auditEntries.map((entry) => (
                           <tr key={entry.id}>
-                            <td className="py-1.5 pr-4 font-mono text-[#6B7280] whitespace-nowrap">
+                            <td className="py-1.5 pr-4 font-mono text-[var(--muted)] whitespace-nowrap">
                               {new Date(entry.changed_at).toLocaleString("en-US", {
                                 month: "short", day: "numeric", year: "numeric",
                                 hour: "2-digit", minute: "2-digit",
                               })}
                             </td>
-                            <td className="py-1.5 pr-4 font-mono text-[#1A1A1A]">{entry.job_number}</td>
-                            <td className="py-1.5 pr-4 text-[#374151]">
+                            <td className="py-1.5 pr-4 font-mono text-[var(--foreground)]">{entry.job_number}</td>
+                            <td className="py-1.5 pr-4 text-[var(--foreground)]">
                               {FIELD_LABELS[entry.field_name] ?? entry.field_name}
                             </td>
                             <td className="py-1.5 pr-4 text-right font-mono text-[#B22234]">
@@ -1653,7 +1653,7 @@ ${fadedJobs.length > 0 ? `
 
         {/* ── Snapshots (finalized only) ──────────────────────────────────── */}
         {isFinalized && (
-          <div className="bg-white rounded-lg border border-[#E5E7EB] shadow-sm mb-4">
+          <div className="bg-white rounded-lg border border-[var(--hairline)] shadow-sm mb-4">
             <button
               onClick={() => {
                 const next = !snapshotsExpanded;
@@ -1662,39 +1662,39 @@ ${fadedJobs.length > 0 ? `
               }}
               className="w-full flex items-center justify-between px-5 py-4 text-left"
             >
-              <span className="font-semibold text-[#1B2A4A]">Snapshots</span>
-              <span className="text-[#6B7280] text-sm">{snapshotsExpanded ? "▲ Collapse" : "▶ Expand"}</span>
+              <span className="font-semibold text-[var(--foreground)]">Snapshots</span>
+              <span className="text-[var(--muted)] text-sm">{snapshotsExpanded ? "▲ Collapse" : "▶ Expand"}</span>
             </button>
             {snapshotsExpanded && (
-              <div className="border-t border-[#E5E7EB] px-5 py-4">
+              <div className="border-t border-[var(--hairline)] px-5 py-4">
                 {!snapshotsLoaded ? (
-                  <p className="text-sm text-[#6B7280]">Loading…</p>
+                  <p className="text-sm text-[var(--muted)]">Loading…</p>
                 ) : snapshots.length === 0 ? (
-                  <p className="text-sm text-[#6B7280]">No snapshots yet.</p>
+                  <p className="text-sm text-[var(--muted)]">No snapshots yet.</p>
                 ) : (
                   <div className="overflow-x-auto">
                     <table className="w-full text-xs">
                       <thead>
-                        <tr className="border-b border-[#E5E7EB]">
-                          <th className="text-left py-2 pr-4 text-[#6B7280] font-semibold">Date / Time</th>
-                          <th className="text-left py-2 pr-4 text-[#6B7280] font-semibold">Reason</th>
-                          <th className="text-right py-2 text-[#6B7280] font-semibold">Action</th>
+                        <tr className="border-b border-[var(--hairline)]">
+                          <th className="text-left py-2 pr-4 text-[var(--muted)] font-semibold">Date / Time</th>
+                          <th className="text-left py-2 pr-4 text-[var(--muted)] font-semibold">Reason</th>
+                          <th className="text-right py-2 text-[var(--muted)] font-semibold">Action</th>
                         </tr>
                       </thead>
-                      <tbody className="divide-y divide-[#E5E7EB]">
+                      <tbody className="divide-y divide-[#e5e5e5]">
                         {snapshots.map((snap) => (
                           <tr key={snap.id}>
-                            <td className="py-1.5 pr-4 font-mono text-[#6B7280] whitespace-nowrap">
+                            <td className="py-1.5 pr-4 font-mono text-[var(--muted)] whitespace-nowrap">
                               {new Date(snap.created_at).toLocaleString("en-US", {
                                 month: "short", day: "numeric", year: "numeric",
                                 hour: "2-digit", minute: "2-digit",
                               })}
                             </td>
-                            <td className="py-1.5 pr-4 text-[#374151]">{snap.reason}</td>
+                            <td className="py-1.5 pr-4 text-[var(--foreground)]">{snap.reason}</td>
                             <td className="py-1.5 text-right">
                               <button
                                 onClick={() => handleRestore(snap.id)}
-                                className="text-xs border border-[#1B2A4A] text-[#1B2A4A] hover:bg-[#1B2A4A]/10 px-3 py-1 rounded transition-colors"
+                                className="text-xs border border-[var(--foreground)] text-[var(--foreground)] hover:bg-[var(--foreground)]/10 px-3 py-1 rounded transition-colors"
                               >
                                 Restore
                               </button>
@@ -1719,8 +1719,8 @@ ${fadedJobs.length > 0 ? `
         );
         return (
           <div className="fixed inset-0 bg-black/40 flex items-center justify-center z-50 px-4">
-            <div className="bg-white border border-[#E5E7EB] rounded-lg w-full max-w-md p-6 shadow-lg flex flex-col" style={{ maxHeight: "90vh" }}>
-              <h2 className="text-lg font-bold text-[#1A1A1A] mb-4 shrink-0">Add Jobs to Report</h2>
+            <div className="bg-white border border-[var(--hairline)] rounded-lg w-full max-w-md p-6 shadow-lg flex flex-col" style={{ maxHeight: "90vh" }}>
+              <h2 className="text-lg font-bold text-[var(--foreground)] mb-4 shrink-0">Add Jobs to Report</h2>
 
               {addJobError && (
                 <div className="mb-3 bg-red-50 border border-red-200 text-red-700 px-3 py-2 rounded text-sm shrink-0">
@@ -1735,52 +1735,52 @@ ${fadedJobs.length > 0 ? `
                   placeholder="Search by job # or name…"
                   value={jobFilter}
                   onChange={(e) => setJobFilter(e.target.value)}
-                  className="w-full border border-[#E5E7EB] rounded px-3 py-2 text-sm text-[#1A1A1A] focus:outline-none focus:border-[#1B2A4A]"
+                  className="w-full border border-[var(--hairline)] rounded px-3 py-2 text-sm text-[var(--foreground)] focus:outline-none focus:border-[var(--foreground)]"
                   autoFocus
                 />
                 {availableJobs.length > 0 && (
                   <div className="flex gap-3 mt-1.5 text-xs">
                     <button
                       onClick={() => setSelectedToAdd(new Set(filtered.map((j) => j.id)))}
-                      className="text-[#1B2A4A] hover:underline"
+                      className="text-[var(--foreground)] hover:underline"
                     >
                       Select all{filter ? " matching" : ""}
                     </button>
                     <button
                       onClick={() => setSelectedToAdd(new Set())}
-                      className="text-[#6B7280] hover:underline"
+                      className="text-[var(--muted)] hover:underline"
                     >
                       Clear
                     </button>
                     {selectedToAdd.size > 0 && (
-                      <span className="text-[#6B7280]">{selectedToAdd.size} selected</span>
+                      <span className="text-[var(--muted)]">{selectedToAdd.size} selected</span>
                     )}
                   </div>
                 )}
               </div>
 
               {/* Checklist */}
-              <div className="flex-1 overflow-y-auto border border-[#E5E7EB] rounded mb-4 min-h-0">
+              <div className="flex-1 overflow-y-auto border border-[var(--hairline)] rounded mb-4 min-h-0">
                 {availableJobs.length === 0 ? (
-                  <p className="text-[#6B7280] text-sm px-3 py-4 text-center">
+                  <p className="text-[var(--muted)] text-sm px-3 py-4 text-center">
                     All active jobs are already in this report.
                   </p>
                 ) : filtered.length === 0 ? (
-                  <p className="text-[#6B7280] text-sm px-3 py-4 text-center">No matching jobs.</p>
+                  <p className="text-[var(--muted)] text-sm px-3 py-4 text-center">No matching jobs.</p>
                 ) : (
                   filtered.map((job) => (
                     <label
                       key={job.id}
-                      className="flex items-center gap-3 px-3 py-2.5 hover:bg-[#F9FAFB] border-b border-[#E5E7EB] last:border-b-0 cursor-pointer"
+                      className="flex items-center gap-3 px-3 py-2.5 hover:bg-[var(--surface)] border-b border-[var(--hairline)] last:border-b-0 cursor-pointer"
                     >
                       <input
                         type="checkbox"
                         checked={selectedToAdd.has(job.id)}
                         onChange={() => toggleJobSelection(job.id)}
-                        className="accent-[#1B2A4A] shrink-0"
+                        className="accent-[var(--foreground)] shrink-0"
                       />
-                      <span className="font-mono text-xs text-[#6B7280] shrink-0 w-14">{job.job_number}</span>
-                      <span className="text-sm text-[#1A1A1A] truncate">{job.job_name}</span>
+                      <span className="font-mono text-xs text-[var(--muted)] shrink-0 w-14">{job.job_number}</span>
+                      <span className="text-sm text-[var(--foreground)] truncate">{job.job_name}</span>
                     </label>
                   ))
                 )}
@@ -1791,7 +1791,7 @@ ${fadedJobs.length > 0 ? `
                 <button
                   onClick={handleAddJobs}
                   disabled={selectedToAdd.size === 0 || addingJobs}
-                  className="bg-[#1B2A4A] hover:bg-[#243d70] disabled:opacity-40 text-white font-bold px-5 py-2 rounded text-sm transition-colors"
+                  className="bg-[var(--foreground)] hover:bg-[var(--foreground)] disabled:opacity-40 text-white font-bold px-5 py-2 rounded text-sm transition-colors"
                 >
                   {addingJobs
                     ? "Adding…"
@@ -1802,7 +1802,7 @@ ${fadedJobs.length > 0 ? `
                 <button
                   onClick={() => setAddJobOpen(false)}
                   disabled={addingJobs}
-                  className="border border-[#E5E7EB] text-[#6B7280] hover:border-[#1B2A4A] hover:text-[#1B2A4A] disabled:opacity-40 px-4 py-2 rounded text-sm transition-colors"
+                  className="border border-[var(--hairline)] text-[var(--muted)] hover:border-[var(--foreground)] hover:text-[var(--foreground)] disabled:opacity-40 px-4 py-2 rounded text-sm transition-colors"
                 >
                   Cancel
                 </button>

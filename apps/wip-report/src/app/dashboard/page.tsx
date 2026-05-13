@@ -98,8 +98,8 @@ export default async function DashboardPage() {
     return (
       <div className="px-4 py-10">
         <div className="max-w-screen-xl mx-auto">
-          <h1 className="text-2xl font-bold mb-2 text-[#1A1A1A]">Dashboard</h1>
-          <p className="text-[#6B7280] py-20 text-center">
+          <h1 className="text-2xl font-bold mb-2 text-[var(--foreground)]">Dashboard</h1>
+          <p className="text-[var(--muted)] py-20 text-center">
             No finalized WIP reports yet. Finalize a report to see dashboard data.
           </p>
         </div>

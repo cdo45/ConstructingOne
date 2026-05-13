@@ -87,10 +87,10 @@ export default function JobForm({
   }
 
   const inputClass =
-    "w-full bg-white border border-[#E5E7EB] text-[#1A1A1A] rounded px-3 py-2 focus:outline-none focus:border-[#1B2A4A] placeholder-gray-400";
+    "w-full bg-white border border-[var(--hairline)] text-[var(--foreground)] rounded px-3 py-2 focus:outline-none focus:border-[var(--foreground)] placeholder-gray-400";
   const readonlyClass =
-    "w-full bg-[#F9FAFB] border border-[#E5E7EB] text-[#1A1A1A] rounded px-3 py-2 font-semibold";
-  const labelClass = "block text-sm text-[#374151] mb-1";
+    "w-full bg-[var(--surface)] border border-[var(--hairline)] text-[var(--foreground)] rounded px-3 py-2 font-semibold";
+  const labelClass = "block text-sm text-[var(--foreground)] mb-1";
 
   return (
     <form onSubmit={handleSubmit} className="space-y-6">
@@ -152,7 +152,7 @@ export default function JobForm({
 
       {/* Contract */}
       <div>
-        <h2 className="text-lg font-semibold text-[#1B2A4A] mb-3">Contract</h2>
+        <h2 className="text-lg font-semibold text-[var(--foreground)] mb-3">Contract</h2>
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
           <div>
             <label className={labelClass}>Original Contract ($)</label>
@@ -187,7 +187,7 @@ export default function JobForm({
 
       {/* Cost & GP */}
       <div>
-        <h2 className="text-lg font-semibold text-[#1B2A4A] mb-3">Cost & Gross Profit</h2>
+        <h2 className="text-lg font-semibold text-[var(--foreground)] mb-3">Cost & Gross Profit</h2>
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
           <div>
             <label className={labelClass}>Est. Total Cost ($)</label>
@@ -240,14 +240,14 @@ export default function JobForm({
         <button
           type="submit"
           disabled={submitting}
-          className="bg-[#1B2A4A] hover:bg-[#243d70] disabled:opacity-50 text-white font-bold px-6 py-2 rounded transition-colors"
+          className="bg-[var(--foreground)] hover:bg-[var(--foreground)] disabled:opacity-50 text-white font-bold px-6 py-2 rounded transition-colors"
         >
           {submitting ? "Saving..." : submitLabel}
         </button>
         <button
           type="button"
           onClick={onCancel}
-          className="border border-[#E5E7EB] text-[#6B7280] hover:border-[#1B2A4A] hover:text-[#1B2A4A] px-6 py-2 rounded transition-colors"
+          className="border border-[var(--hairline)] text-[var(--muted)] hover:border-[var(--foreground)] hover:text-[var(--foreground)] px-6 py-2 rounded transition-colors"
         >
           Cancel
         </button>
