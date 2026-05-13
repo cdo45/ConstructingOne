@@ -131,7 +131,7 @@ function Toast({ msg, onDone }: { msg: string; onDone: () => void }) {
   }, [onDone]);
 
   return (
-    <div className="fixed bottom-6 right-6 z-50 flex items-center gap-3 bg-[#1B2A4A] text-white px-5 py-3 rounded-xl shadow-xl text-sm font-medium animate-fade-in">
+    <div className="fixed bottom-6 right-6 z-50 flex items-center gap-3 bg-[var(--foreground)] text-white px-5 py-3 rounded-xl shadow-xl text-sm font-medium animate-fade-in">
       <svg className="w-4 h-4 text-green-400 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
         <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
       </svg>
@@ -445,13 +445,13 @@ export default function EnterWeekPage({
       <div className="flex items-start justify-between mb-6">
         <div>
           <div className="flex items-center gap-2 text-sm text-gray-500 mb-1">
-            <Link href="/weeks" className="hover:text-[#1B2A4A] hover:underline">
+            <Link href="/weeks" className="hover:text-[var(--foreground)] hover:underline">
               All Weeks
             </Link>
             <svg className="w-3 h-3" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
               <path strokeLinecap="round" strokeLinejoin="round" d="M9 5l7 7-7 7" />
             </svg>
-            <Link href={`/weeks/${date}`} className="hover:text-[#1B2A4A] hover:underline">
+            <Link href={`/weeks/${date}`} className="hover:text-[var(--foreground)] hover:underline">
               {fmtDate(date)}
             </Link>
             <svg className="w-3 h-3" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>

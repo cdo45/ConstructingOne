@@ -182,7 +182,7 @@ export default function WeeksPage() {
         <div
           key={toast.n}
           className={`fixed bottom-6 right-6 z-50 px-5 py-3 rounded-xl shadow-xl text-sm font-medium ${
-            toast.kind === "ok" ? "bg-[#1B2A4A] text-white" : "bg-red-600 text-white"
+            toast.kind === "ok" ? "bg-[var(--foreground)] text-white" : "bg-red-600 text-white"
           }`}
           onAnimationEnd={() => setToast(null)}
           style={{ animation: "fadeOut 4s forwards" }}
