@@ -61,7 +61,7 @@ export default function LoginPage() {
               letterSpacing: "-0.02em"
             }}
           >
-            VANCE CORP
+            CONSTRUCTINGONE
           </div>
           <div
             style={{
@@ -130,8 +130,8 @@ export default function LoginPage() {
           <div style={{ textTransform: "uppercase", letterSpacing: "0.05em", marginBottom: 6 }}>
             Test Credentials
           </div>
-          <div>admin@vance.com / test1234</div>
-          <div>pm1@vance.com / test1234</div>
+          <div>admin@example.com / test1234</div>
+          <div>pm1@example.com / test1234</div>
           <div>sub1@acme.com / test1234</div>
         </div>
       </form>

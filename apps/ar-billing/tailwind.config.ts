@@ -9,14 +9,20 @@ const config: Config = {
   theme: {
     extend: {
       colors: {
-        navy:    "#1F3864",
-        teal:    "#1F6B6B",
-        red:     "#C8102E",
-        dkgreen: "#1E6B1E",
-        ltgray:  "#F2F2F2",
+        background: "var(--background)",
+        foreground: "var(--foreground)",
+        muted: "var(--muted)",
+        hairline: "var(--hairline)",
+        surface: "var(--surface)",
+      },
+      fontFamily: {
+        sans: ["var(--font-sans)", "system-ui", "sans-serif"],
+        serif: ["var(--font-serif)", "ui-serif", "Georgia", "serif"],
+        mono: ["var(--font-mono)", "ui-monospace", "monospace"],
       },
     },
   },
   plugins: [],
 };
+
 export default config;

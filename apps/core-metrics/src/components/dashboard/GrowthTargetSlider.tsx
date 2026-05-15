@@ -58,7 +58,7 @@ export default function GrowthTargetSlider({
         step={5}
         value={pctDisplay}
         onChange={(e) => handleChange(parseInt(e.target.value, 10))}
-        className="flex-1 accent-[#1B2A4A]"
+        className="flex-1 accent-[var(--foreground)]"
       />
       <span className="text-[10px] text-gray-400 w-10 text-right tabular-nums">
         {pctDisplay}%

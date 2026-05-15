@@ -92,11 +92,13 @@ function calcItem(item: LineItemWithJob) {
   };
 }
 
-// Distinct palette for pie slices
+// Distinct palette for pie slices: greyscale base with a single warm-taupe
+// accent for the supplementary slots. Hues 5-7 stay semantic (green/orange/red)
+// for ratio/status visualizations.
 const PIE_COLORS = [
-  "#1B2A4A", "#3B5189", "#6B87C9", "#C9A84C",
-  "#16A34A", "#D97706", "#B22234", "#9CA3AF",
-  "#374151", "#7C3AED", "#0891B2", "#BE185D",
+  "#0a0a0a", "#404040", "#737373", "#a3a3a3",
+  "#16A34A", "#D97706", "#B22234", "#737373",
+  "#3a3a3a", "#665e54", "#8c7f74", "#b2a89e",
 ];
 
 // ── Component ─────────────────────────────────────────────────────────────────
@@ -299,13 +301,13 @@ export default function WipSummaryClient({
     const est = Number(data.estTotalCost ?? costs + remaining);
     const pctConsumed = est > 0 ? (costs / est) * 100 : 0;
     return (
-      <div className="bg-white border border-[#E5E7EB] rounded shadow-sm px-3 py-2 text-xs space-y-0.5">
-        <p className="font-semibold text-[#1B2A4A] mb-1">{label}</p>
-        <p className="text-[#6B7280]">Est Total Cost: <span className="font-mono text-[#1A1A1A]">${fmt$(est)}</span></p>
-        <p className="text-[#6B7280]">Costs to Date: <span className="font-mono text-[#1A1A1A]">${fmt$(costs)}</span></p>
-        <p className="text-[#6B7280]">Remaining: <span className="font-mono text-[#1A1A1A]">${fmt$(remaining)}</span></p>
-        <p className="text-[#6B7280] border-t border-[#E5E7EB] pt-0.5 mt-0.5">
-          % Consumed: <span className={`font-mono font-semibold ${pctConsumed > 90 ? "text-[#B22234]" : "text-[#1A1A1A]"}`}>{pctConsumed.toFixed(1)}%</span>
+      <div className="bg-white border border-[var(--hairline)] rounded shadow-sm px-3 py-2 text-xs space-y-0.5">
+        <p className="font-semibold text-[var(--foreground)] mb-1">{label}</p>
+        <p className="text-[var(--muted)]">Est Total Cost: <span className="font-mono text-[var(--foreground)]">${fmt$(est)}</span></p>
+        <p className="text-[var(--muted)]">Costs to Date: <span className="font-mono text-[var(--foreground)]">${fmt$(costs)}</span></p>
+        <p className="text-[var(--muted)]">Remaining: <span className="font-mono text-[var(--foreground)]">${fmt$(remaining)}</span></p>
+        <p className="text-[var(--muted)] border-t border-[var(--hairline)] pt-0.5 mt-0.5">
+          % Consumed: <span className={`font-mono font-semibold ${pctConsumed > 90 ? "text-[#B22234]" : "text-[var(--foreground)]"}`}>{pctConsumed.toFixed(1)}%</span>
         </p>
       </div>
     );
@@ -313,11 +315,11 @@ export default function WipSummaryClient({
 
   // ── Styles ────────────────────────────────────────────────────────────────
   const sectionCls =
-    "bg-white rounded-lg border border-[#E5E7EB] shadow-sm p-6 mb-6 print-section";
+    "bg-white rounded-lg border border-[var(--hairline)] shadow-sm p-6 mb-6 print-section";
   const h2Cls =
-    "text-base font-bold text-[#1B2A4A] uppercase tracking-wide mb-4 pb-2 border-b border-[#E5E7EB]";
+    "text-base font-bold text-[var(--foreground)] uppercase tracking-wide mb-4 pb-2 border-b border-[var(--hairline)]";
   const chartLabelCls =
-    "text-xs font-semibold text-[#6B7280] uppercase tracking-wider mb-3";
+    "text-xs font-semibold text-[var(--muted)] uppercase tracking-wider mb-3";
 
   const priorityBadge = (p: "high" | "medium" | "low") =>
     p === "high"
@@ -338,15 +340,15 @@ export default function WipSummaryClient({
       `}</style>
 
       {/* ── Sticky screen header ──────────────────────────────────────────── */}
-      <div className="print-hide sticky top-0 z-10 bg-white border-b border-[#E5E7EB] px-4 py-3 flex items-center justify-between shadow-sm">
+      <div className="print-hide sticky top-0 z-10 bg-white border-b border-[var(--hairline)] px-4 py-3 flex items-center justify-between shadow-sm">
         <Link
           href={`/wip/${report.id}`}
-          className="text-sm text-[#6B7280] hover:text-[#1B2A4A] transition-colors"
+          className="text-sm text-[var(--muted)] hover:text-[var(--foreground)] transition-colors"
         >
           ← Back to WIP Editor
         </Link>
         <div className="flex items-center gap-4">
-          <span className="text-sm text-[#6B7280]">
+          <span className="text-sm text-[var(--muted)]">
             Executive Summary — {dateStr}
             {report.status === "final" && (
               <span className="ml-2 bg-blue-100 text-blue-700 px-2 py-0.5 rounded text-xs font-semibold">
@@ -356,36 +358,36 @@ export default function WipSummaryClient({
           </span>
           <button
             onClick={() => window.print()}
-            className="bg-[#1B2A4A] hover:bg-[#243d70] text-white text-sm font-semibold px-4 py-1.5 rounded transition-colors"
+            className="bg-[var(--foreground)] hover:bg-[var(--foreground)] text-white text-sm font-semibold px-4 py-1.5 rounded transition-colors"
           >
             Print Summary
           </button>
         </div>
       </div>
 
-      <div className="px-4 py-6 bg-[#F5F5F5] min-h-screen">
+      <div className="px-4 py-6 bg-[var(--background)] min-h-screen">
         <div className="max-w-screen-xl mx-auto">
 
           {/* Print-only masthead */}
-          <div className="hidden print:block text-center mb-8 border-b-2 border-[#1B2A4A] pb-4">
-            <h1 className="text-2xl font-bold text-[#1B2A4A] tracking-widest uppercase">
-              Vance Corporation
+          <div className="hidden print:block text-center mb-8 border-b-2 border-[var(--foreground)] pb-4">
+            <h1 className="text-2xl font-bold text-[var(--foreground)] tracking-widest uppercase">
+              ConstructingOne
             </h1>
-            <p className="text-base text-[#374151] mt-1">
+            <p className="text-base text-[var(--foreground)] mt-1">
               Work-in-Progress Executive Summary
             </p>
-            <p className="text-sm text-[#6B7280] mt-0.5">
+            <p className="text-sm text-[var(--muted)] mt-0.5">
               Period Ending: {dateStr}
             </p>
           </div>
 
           {/* Screen title */}
           <div className="print-hide mb-6">
-            <h1 className="text-2xl font-bold text-[#1A1A1A]">
+            <h1 className="text-2xl font-bold text-[var(--foreground)]">
               Executive Summary{" "}
-              <span className="text-[#1B2A4A]">{dateStr}</span>
+              <span className="text-[var(--foreground)]">{dateStr}</span>
             </h1>
-            <p className="text-sm text-[#6B7280] mt-1">
+            <p className="text-sm text-[var(--muted)] mt-1">
               Auto-generated narrative from the{" "}
               {report.status === "final" ? "finalized" : "draft"} WIP report.
             </p>
@@ -396,8 +398,8 @@ export default function WipSummaryClient({
             <h2 className={h2Cls}>Part 1 — Narrative Summary</h2>
 
             {/* Opening paragraph */}
-            <p className="text-sm text-[#374151] leading-relaxed mb-4">
-              For the period ending <strong>{dateStr}</strong>, Vance Corporation has{" "}
+            <p className="text-sm text-[var(--foreground)] leading-relaxed mb-4">
+              For the period ending <strong>{dateStr}</strong>, ConstructingOne has{" "}
               <strong>{computed.length}</strong> active contract
               {computed.length !== 1 ? "s" : ""} with a combined portfolio value of{" "}
               <strong>${fmt$(totalRevised)}</strong>. The company has earned{" "}
@@ -412,7 +414,7 @@ export default function WipSummaryClient({
             </p>
 
             {/* Billings position paragraph */}
-            <p className="text-sm text-[#374151] leading-relaxed mb-5">
+            <p className="text-sm text-[var(--foreground)] leading-relaxed mb-5">
               The company is currently{" "}
               <strong
                 className={
@@ -431,7 +433,7 @@ export default function WipSummaryClient({
             </p>
 
             {/* YTD paragraph */}
-            <p className="text-sm text-[#374151] leading-relaxed mb-5">
+            <p className="text-sm text-[var(--foreground)] leading-relaxed mb-5">
               On a year-to-date basis, the company has recognized{" "}
               <strong>${fmt$(totalCyRevenue)}</strong> in revenue against{" "}
               <strong>${fmt$(totalCyCosts)}</strong> in costs, yielding a current-year gross
@@ -456,23 +458,23 @@ export default function WipSummaryClient({
             {/* Per-job bullets */}
             {jobBullets.length > 0 ? (
               <div>
-                <p className="text-xs font-semibold text-[#6B7280] uppercase tracking-wider mb-2.5">
+                <p className="text-xs font-semibold text-[var(--muted)] uppercase tracking-wider mb-2.5">
                   Notable Job Activity
                 </p>
                 <ul className="space-y-2">
                   {jobBullets.map((bullet, i) => (
                     <li
                       key={i}
-                      className="flex items-start gap-2 text-sm text-[#374151]"
+                      className="flex items-start gap-2 text-sm text-[var(--foreground)]"
                     >
-                      <span className="text-[#1B2A4A] mt-0.5 shrink-0 font-bold">•</span>
+                      <span className="text-[var(--foreground)] mt-0.5 shrink-0 font-bold">•</span>
                       <span>{bullet}</span>
                     </li>
                   ))}
                 </ul>
               </div>
             ) : (
-              <p className="text-sm text-[#9CA3AF] italic">
+              <p className="text-sm text-[var(--muted)] italic">
                 No notable job activity to report for this period.
               </p>
             )}
@@ -494,31 +496,31 @@ export default function WipSummaryClient({
                   >
                     <CartesianGrid
                       strokeDasharray="3 3"
-                      stroke="#F3F4F6"
+                      stroke="#fafafa"
                       horizontal={false}
                     />
                     <XAxis
                       type="number"
                       tickFormatter={fmtAxis}
-                      tick={{ fontSize: 9, fill: "#6B7280" }}
+                      tick={{ fontSize: 9, fill: "#737373" }}
                     />
                     <YAxis
                       type="category"
                       dataKey="name"
-                      tick={{ fontSize: 9, fill: "#1A1A1A", fontFamily: "monospace" }}
+                      tick={{ fontSize: 9, fill: "#0a0a0a", fontFamily: "monospace" }}
                       width={68}
                     />
                     <Tooltip formatter={dollarFmt} />
                     <Legend wrapperStyle={{ fontSize: 10, paddingTop: 8 }} />
                     <Bar
                       dataKey="Earned Rev"
-                      fill="#1B2A4A"
+                      fill="#0a0a0a"
                       radius={[0, 3, 3, 0]}
                       barSize={11}
                     />
                     <Bar
                       dataKey="Billings ITD"
-                      fill="#9CA3AF"
+                      fill="#737373"
                       radius={[0, 3, 3, 0]}
                       barSize={11}
                     />
@@ -560,7 +562,7 @@ export default function WipSummaryClient({
               <div>
                 <p className={chartLabelCls}>
                   Estimated GP% by Job
-                  <span className="ml-2 font-normal normal-case text-[#9CA3AF]">
+                  <span className="ml-2 font-normal normal-case text-[var(--muted)]">
                     wtd avg {(wtdAvgGpPct * 100).toFixed(1)}%
                   </span>
                 </p>
@@ -572,18 +574,18 @@ export default function WipSummaryClient({
                   >
                     <CartesianGrid
                       strokeDasharray="3 3"
-                      stroke="#F3F4F6"
+                      stroke="#fafafa"
                       horizontal={false}
                     />
                     <XAxis
                       type="number"
                       tickFormatter={(v) => `${v}%`}
-                      tick={{ fontSize: 9, fill: "#6B7280" }}
+                      tick={{ fontSize: 9, fill: "#737373" }}
                     />
                     <YAxis
                       type="category"
                       dataKey="name"
-                      tick={{ fontSize: 9, fill: "#1A1A1A", fontFamily: "monospace" }}
+                      tick={{ fontSize: 9, fill: "#0a0a0a", fontFamily: "monospace" }}
                       width={68}
                     />
                     <Tooltip formatter={pctFmtTip} />
@@ -603,13 +605,13 @@ export default function WipSummaryClient({
                     </Bar>
                     <ReferenceLine
                       x={parseFloat((wtdAvgGpPct * 100).toFixed(1))}
-                      stroke="#9CA3AF"
+                      stroke="#737373"
                       strokeDasharray="4 4"
                       label={{
                         value: `Wtd Avg: ${(wtdAvgGpPct * 100).toFixed(1)}%`,
                         position: "insideTopRight",
                         fontSize: 9,
-                        fill: "#6B7280",
+                        fill: "#737373",
                       }}
                     />
                   </BarChart>
@@ -627,18 +629,18 @@ export default function WipSummaryClient({
                   >
                     <CartesianGrid
                       strokeDasharray="3 3"
-                      stroke="#F3F4F6"
+                      stroke="#fafafa"
                       horizontal={false}
                     />
                     <XAxis
                       type="number"
                       tickFormatter={fmtAxis}
-                      tick={{ fontSize: 9, fill: "#6B7280" }}
+                      tick={{ fontSize: 9, fill: "#737373" }}
                     />
                     <YAxis
                       type="category"
                       dataKey="name"
-                      tick={{ fontSize: 9, fill: "#1A1A1A", fontFamily: "monospace" }}
+                      tick={{ fontSize: 9, fill: "#0a0a0a", fontFamily: "monospace" }}
                       width={68}
                     />
                     <Tooltip content={BudgetTooltip} />
@@ -646,13 +648,13 @@ export default function WipSummaryClient({
                     <Bar
                       dataKey="Costs to Date"
                       stackId="cost"
-                      fill="#1B2A4A"
+                      fill="#0a0a0a"
                       barSize={11}
                     />
                     <Bar
                       dataKey="Remaining"
                       stackId="cost"
-                      fill="#E5E7EB"
+                      fill="#e5e5e5"
                       radius={[0, 3, 3, 0]}
                       barSize={11}
                     />
@@ -668,14 +670,14 @@ export default function WipSummaryClient({
             <h2 className={h2Cls}>Part 3 — Recommendations</h2>
 
             {recommendations.length === 0 ? (
-              <p className="text-sm text-[#9CA3AF] italic">
+              <p className="text-sm text-[var(--muted)] italic">
                 No action items identified for this period.
               </p>
             ) : (
               <ol className="space-y-3">
                 {recommendations.map((rec, i) => (
                   <li key={i} className="flex items-start gap-3">
-                    <span className="text-xs font-mono text-[#9CA3AF] mt-0.5 w-5 shrink-0 text-right">
+                    <span className="text-xs font-mono text-[var(--muted)] mt-0.5 w-5 shrink-0 text-right">
                       {i + 1}.
                     </span>
                     <span
@@ -683,7 +685,7 @@ export default function WipSummaryClient({
                     >
                       {rec.priority.toUpperCase()}
                     </span>
-                    <span className="text-sm text-[#374151]">{rec.text}</span>
+                    <span className="text-sm text-[var(--foreground)]">{rec.text}</span>
                   </li>
                 ))}
               </ol>

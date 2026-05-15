@@ -8,35 +8,16 @@ const config: Config = {
   theme: {
     extend: {
       colors: {
-        bg: {
-          primary: "#000000",
-          secondary: "#0a0a0a",
-          card: "#111111",
-          hover: "#1a1a1a"
-        },
-        border: {
-          DEFAULT: "#222222",
-          light: "#333333"
-        },
-        text: {
-          primary: "#ffffff",
-          secondary: "#888888",
-          muted: "#555555"
-        },
-        accent: {
-          DEFAULT: "#ffffff",
-          dim: "#333333"
-        },
-        status: {
-          success: "#22c55e",
-          warning: "#f59e0b",
-          danger: "#ef4444",
-          info: "#3b82f6"
-        }
+        background: "var(--background)",
+        foreground: "var(--foreground)",
+        muted: "var(--muted)",
+        hairline: "var(--hairline)",
+        surface: "var(--surface)"
       },
       fontFamily: {
-        mono: ["ui-monospace", "SFMono-Regular", "Menlo", "Monaco", "Consolas", "monospace"],
-        sans: ["system-ui", "-apple-system", "BlinkMacSystemFont", "sans-serif"]
+        sans: ["var(--font-sans)", "system-ui", "sans-serif"],
+        serif: ["var(--font-serif)", "ui-serif", "Georgia", "serif"],
+        mono: ["var(--font-mono)", "ui-monospace", "monospace"]
       }
     }
   },

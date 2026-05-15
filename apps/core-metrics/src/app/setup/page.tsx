@@ -683,7 +683,7 @@ function GlAccountsSection({
                         onClick={() => toggleActive(acc)}
                         title={acc.is_active ? "Deactivate" : "Activate"}
                         className={`relative inline-flex h-5 w-9 items-center rounded-full transition-colors focus:outline-none ${
-                          acc.is_active ? "bg-[#1B2A4A]" : "bg-gray-300"
+                          acc.is_active ? "bg-[var(--foreground)]" : "bg-gray-300"
                         }`}
                       >
                         <span

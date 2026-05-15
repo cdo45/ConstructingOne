@@ -5,7 +5,7 @@ import { isActiveWeek, lastActiveWeeks } from "@/lib/active-weeks";
 // ─── Category IDs (must match DB categories table) ───────────────────────────
 // Using category_id throughout this route to avoid name-based fragility.
 
-export const CAT = {
+const CAT = {
   CASH:          1,
   AR:            2,
   CURRENT_DEBT:  3,

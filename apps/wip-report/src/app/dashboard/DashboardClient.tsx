@@ -300,10 +300,10 @@ export default function DashboardClient({
 
         {/* Header */}
         <div>
-          <p className="text-xs text-[#6B7280] mb-1">
+          <p className="text-xs text-[var(--muted)] mb-1">
             Based on finalized report — period ending {toDateStr(latestReport.period_date)}
           </p>
-          <h1 className="text-2xl font-bold text-[#1A1A1A]">Dashboard</h1>
+          <h1 className="text-2xl font-bold text-[var(--foreground)]">Dashboard</h1>
         </div>
 
         {/* Summary cards */}
@@ -328,28 +328,28 @@ export default function DashboardClient({
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
 
           {/* Billings position bar chart */}
-          <div className="bg-white border border-[#E5E7EB] rounded-lg shadow-sm p-5">
-            <h2 className="text-sm font-semibold text-[#1B2A4A] mb-4">Billings Position</h2>
+          <div className="bg-white border border-[var(--hairline)] rounded-lg shadow-sm p-5">
+            <h2 className="text-sm font-semibold text-[var(--foreground)] mb-4">Billings Position</h2>
             <ResponsiveContainer width="100%" height={180}>
               <BarChart data={billingsChartData} margin={{ top: 4, right: 8, left: 8, bottom: 4 }}>
-                <CartesianGrid strokeDasharray="3 3" stroke="#E5E7EB" />
-                <XAxis dataKey="name" tick={{ fontSize: 9, fill: "#6B7280" }} />
-                <YAxis tickFormatter={fmtAxis} tick={{ fontSize: 9, fill: "#6B7280" }} width={56} />
+                <CartesianGrid strokeDasharray="3 3" stroke="#e5e5e5" />
+                <XAxis dataKey="name" tick={{ fontSize: 9, fill: "#737373" }} />
+                <YAxis tickFormatter={fmtAxis} tick={{ fontSize: 9, fill: "#737373" }} width={56} />
                 <Tooltip formatter={tooltipFmt} />
-                <Bar dataKey="value" fill="#1B2A4A" radius={[4, 4, 0, 0]} />
+                <Bar dataKey="value" fill="#0a0a0a" radius={[4, 4, 0, 0]} />
               </BarChart>
             </ResponsiveContainer>
-            <div className="mt-3 pt-3 border-t border-[#E5E7EB] space-y-1 text-xs">
+            <div className="mt-3 pt-3 border-t border-[var(--hairline)] space-y-1 text-xs">
               <div className="flex justify-between">
-                <span className="text-[#6B7280]">Underbillings</span>
+                <span className="text-[var(--muted)]">Underbillings</span>
                 <span className="font-mono text-[#16A34A] font-semibold">${fmt$(totalUnderbillings)}</span>
               </div>
               <div className="flex justify-between">
-                <span className="text-[#6B7280]">Overbillings</span>
+                <span className="text-[var(--muted)]">Overbillings</span>
                 <span className="font-mono text-[#B22234] font-semibold">${fmt$(totalOverbillings)}</span>
               </div>
-              <div className="flex justify-between pt-1 border-t border-[#E5E7EB]">
-                <span className="font-semibold text-[#1A1A1A]">Net</span>
+              <div className="flex justify-between pt-1 border-t border-[var(--hairline)]">
+                <span className="font-semibold text-[var(--foreground)]">Net</span>
                 <span className={`font-mono font-semibold ${netOverUnder >= 0 ? "text-[#16A34A]" : "text-[#B22234]"}`}>
                   {netOverUnder >= 0 ? "+" : ""}${fmt$(netOverUnder)}
                 </span>
@@ -358,30 +358,30 @@ export default function DashboardClient({
           </div>
 
           {/* Top 5 backlog */}
-          <div className="bg-white border border-[#E5E7EB] rounded-lg shadow-sm p-5">
-            <h2 className="text-sm font-semibold text-[#1B2A4A] mb-3">Top 5 by Backlog</h2>
+          <div className="bg-white border border-[var(--hairline)] rounded-lg shadow-sm p-5">
+            <h2 className="text-sm font-semibold text-[var(--foreground)] mb-3">Top 5 by Backlog</h2>
             <table className="w-full text-xs">
               <thead>
-                <tr className="border-b border-[#E5E7EB]">
-                  <th className="text-left py-1.5 text-[#6B7280] font-semibold">Job</th>
-                  <th className="text-right py-1.5 text-[#6B7280] font-semibold">Backlog</th>
+                <tr className="border-b border-[var(--hairline)]">
+                  <th className="text-left py-1.5 text-[var(--muted)] font-semibold">Job</th>
+                  <th className="text-right py-1.5 text-[var(--muted)] font-semibold">Backlog</th>
                 </tr>
               </thead>
               <tbody>
                 {top5Backlog.map(({ item, backlog }) => (
-                  <tr key={item.id} className="border-b border-[#F3F4F6]">
+                  <tr key={item.id} className="border-b border-[var(--hairline)]">
                     <td className="py-1.5">
-                      <div className="font-mono text-[#1A1A1A] font-semibold">{item.job_number}</div>
-                      <div className="text-[#6B7280] truncate max-w-[140px]">{item.job_name}</div>
+                      <div className="font-mono text-[var(--foreground)] font-semibold">{item.job_number}</div>
+                      <div className="text-[var(--muted)] truncate max-w-[140px]">{item.job_name}</div>
                     </td>
-                    <td className="text-right font-mono text-[#1A1A1A] font-semibold py-1.5">
+                    <td className="text-right font-mono text-[var(--foreground)] font-semibold py-1.5">
                       ${fmtInt(backlog)}
                     </td>
                   </tr>
                 ))}
                 {top5Backlog.length === 0 && (
                   <tr>
-                    <td colSpan={2} className="py-6 text-center text-[#9CA3AF]">
+                    <td colSpan={2} className="py-6 text-center text-[var(--muted)]">
                       No backlog
                     </td>
                   </tr>
@@ -391,21 +391,21 @@ export default function DashboardClient({
           </div>
 
           {/* Bottom 5 GP% */}
-          <div className="bg-white border border-[#E5E7EB] rounded-lg shadow-sm p-5">
-            <h2 className="text-sm font-semibold text-[#1B2A4A] mb-3">Bottom 5 by GP%</h2>
+          <div className="bg-white border border-[var(--hairline)] rounded-lg shadow-sm p-5">
+            <h2 className="text-sm font-semibold text-[var(--foreground)] mb-3">Bottom 5 by GP%</h2>
             <table className="w-full text-xs">
               <thead>
-                <tr className="border-b border-[#E5E7EB]">
-                  <th className="text-left py-1.5 text-[#6B7280] font-semibold">Job</th>
-                  <th className="text-right py-1.5 text-[#6B7280] font-semibold">ITD GP%</th>
+                <tr className="border-b border-[var(--hairline)]">
+                  <th className="text-left py-1.5 text-[var(--muted)] font-semibold">Job</th>
+                  <th className="text-right py-1.5 text-[var(--muted)] font-semibold">ITD GP%</th>
                 </tr>
               </thead>
               <tbody>
                 {bottom5Gp.map(({ item, itdGpPct }) => (
-                  <tr key={item.id} className="border-b border-[#F3F4F6]">
+                  <tr key={item.id} className="border-b border-[var(--hairline)]">
                     <td className="py-1.5">
-                      <div className="font-mono text-[#1A1A1A] font-semibold">{item.job_number}</div>
-                      <div className="text-[#6B7280] truncate max-w-[140px]">{item.job_name}</div>
+                      <div className="font-mono text-[var(--foreground)] font-semibold">{item.job_number}</div>
+                      <div className="text-[var(--muted)] truncate max-w-[140px]">{item.job_name}</div>
                     </td>
                     <td
                       className={`text-right font-mono font-semibold py-1.5 ${
@@ -413,7 +413,7 @@ export default function DashboardClient({
                           ? "text-[#B22234]"
                           : itdGpPct < 0.05
                           ? "text-[#D97706]"
-                          : "text-[#1A1A1A]"
+                          : "text-[var(--foreground)]"
                       }`}
                     >
                       {fmtPct(itdGpPct)}
@@ -426,18 +426,18 @@ export default function DashboardClient({
         </div>
 
         {/* Risk flags */}
-        <div className="bg-white border border-[#E5E7EB] rounded-lg shadow-sm p-5">
-          <h2 className="text-sm font-semibold text-[#1B2A4A] mb-3">
+        <div className="bg-white border border-[var(--hairline)] rounded-lg shadow-sm p-5">
+          <h2 className="text-sm font-semibold text-[var(--foreground)] mb-3">
             Risk Flags{" "}
-            <span className="text-[#6B7280] font-normal">({riskFlags.length})</span>
+            <span className="text-[var(--muted)] font-normal">({riskFlags.length})</span>
           </h2>
           {riskFlags.length === 0 ? (
-            <p className="text-xs text-[#9CA3AF]">No risk flags detected.</p>
+            <p className="text-xs text-[var(--muted)]">No risk flags detected.</p>
           ) : (
             <div className="overflow-x-auto">
               <table className="w-full text-xs">
                 <thead>
-                  <tr className="bg-[#1B2A4A] text-white text-left">
+                  <tr className="bg-[var(--foreground)] text-white text-left">
                     <th className="px-3 py-2 font-semibold whitespace-nowrap">Job #</th>
                     <th className="px-3 py-2 font-semibold">Job Name</th>
                     <th className="px-3 py-2 font-semibold">Issue</th>
@@ -446,10 +446,10 @@ export default function DashboardClient({
                 </thead>
                 <tbody>
                   {riskFlags.map((flag, i) => (
-                    <tr key={i} className={i % 2 === 0 ? "bg-white" : "bg-[#F9FAFB]"}>
+                    <tr key={i} className={i % 2 === 0 ? "bg-white" : "bg-[var(--surface)]"}>
                       <td className="px-3 py-2 font-mono">{flag.jobNumber}</td>
-                      <td className="px-3 py-2 text-[#374151]">{flag.jobName}</td>
-                      <td className="px-3 py-2 text-[#374151]">{flag.issue}</td>
+                      <td className="px-3 py-2 text-[var(--foreground)]">{flag.jobName}</td>
+                      <td className="px-3 py-2 text-[var(--foreground)]">{flag.issue}</td>
                       <td className="px-3 py-2 text-center">
                         <span
                           className={`px-2 py-0.5 rounded text-xs font-semibold ${
@@ -471,23 +471,23 @@ export default function DashboardClient({
 
         {/* Period trend charts — only show if 2+ periods */}
         {trendPoints.length >= 2 && (
-          <div className="bg-white border border-[#E5E7EB] rounded-lg shadow-sm p-5">
-            <h2 className="text-sm font-semibold text-[#1B2A4A] mb-6">Period Trends</h2>
+          <div className="bg-white border border-[var(--hairline)] rounded-lg shadow-sm p-5">
+            <h2 className="text-sm font-semibold text-[var(--foreground)] mb-6">Period Trends</h2>
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
 
               <div>
-                <p className="text-xs font-medium text-[#6B7280] mb-3">Net Over/Under</p>
+                <p className="text-xs font-medium text-[var(--muted)] mb-3">Net Over/Under</p>
                 <ResponsiveContainer width="100%" height={200}>
                   <LineChart data={trendPoints} margin={{ top: 4, right: 8, left: 8, bottom: 4 }}>
-                    <CartesianGrid strokeDasharray="3 3" stroke="#E5E7EB" />
-                    <XAxis dataKey="period" tick={{ fontSize: 9, fill: "#6B7280" }} />
-                    <YAxis tickFormatter={fmtAxis} tick={{ fontSize: 9, fill: "#6B7280" }} width={56} />
+                    <CartesianGrid strokeDasharray="3 3" stroke="#e5e5e5" />
+                    <XAxis dataKey="period" tick={{ fontSize: 9, fill: "#737373" }} />
+                    <YAxis tickFormatter={fmtAxis} tick={{ fontSize: 9, fill: "#737373" }} width={56} />
                     <Tooltip formatter={tooltipFmt} />
-                    <ReferenceLine y={0} stroke="#6B7280" strokeDasharray="3 3" />
+                    <ReferenceLine y={0} stroke="#737373" strokeDasharray="3 3" />
                     <Line
                       type="monotone"
                       dataKey="netOverUnder"
-                      stroke="#1B2A4A"
+                      stroke="#0a0a0a"
                       strokeWidth={2}
                       dot
                       name="Net Over/Under"
@@ -497,29 +497,29 @@ export default function DashboardClient({
               </div>
 
               <div>
-                <p className="text-xs font-medium text-[#6B7280] mb-3">CY Revenue vs Costs</p>
+                <p className="text-xs font-medium text-[var(--muted)] mb-3">CY Revenue vs Costs</p>
                 <ResponsiveContainer width="100%" height={200}>
                   <BarChart data={trendPoints} margin={{ top: 4, right: 8, left: 8, bottom: 4 }}>
-                    <CartesianGrid strokeDasharray="3 3" stroke="#E5E7EB" />
-                    <XAxis dataKey="period" tick={{ fontSize: 9, fill: "#6B7280" }} />
-                    <YAxis tickFormatter={fmtAxis} tick={{ fontSize: 9, fill: "#6B7280" }} width={56} />
+                    <CartesianGrid strokeDasharray="3 3" stroke="#e5e5e5" />
+                    <XAxis dataKey="period" tick={{ fontSize: 9, fill: "#737373" }} />
+                    <YAxis tickFormatter={fmtAxis} tick={{ fontSize: 9, fill: "#737373" }} width={56} />
                     <Tooltip formatter={tooltipFmt} />
                     <Legend wrapperStyle={{ fontSize: 9 }} />
-                    <Bar dataKey="cyRevenue" name="CY Revenue" fill="#1B2A4A" radius={[2, 2, 0, 0]} />
-                    <Bar dataKey="cyCosts" name="CY Costs" fill="#9CA3AF" radius={[2, 2, 0, 0]} />
+                    <Bar dataKey="cyRevenue" name="CY Revenue" fill="#0a0a0a" radius={[2, 2, 0, 0]} />
+                    <Bar dataKey="cyCosts" name="CY Costs" fill="#737373" radius={[2, 2, 0, 0]} />
                   </BarChart>
                 </ResponsiveContainer>
               </div>
 
               <div>
-                <p className="text-xs font-medium text-[#6B7280] mb-3">CY Gross Profit</p>
+                <p className="text-xs font-medium text-[var(--muted)] mb-3">CY Gross Profit</p>
                 <ResponsiveContainer width="100%" height={200}>
                   <LineChart data={trendPoints} margin={{ top: 4, right: 8, left: 8, bottom: 4 }}>
-                    <CartesianGrid strokeDasharray="3 3" stroke="#E5E7EB" />
-                    <XAxis dataKey="period" tick={{ fontSize: 9, fill: "#6B7280" }} />
-                    <YAxis tickFormatter={fmtAxis} tick={{ fontSize: 9, fill: "#6B7280" }} width={56} />
+                    <CartesianGrid strokeDasharray="3 3" stroke="#e5e5e5" />
+                    <XAxis dataKey="period" tick={{ fontSize: 9, fill: "#737373" }} />
+                    <YAxis tickFormatter={fmtAxis} tick={{ fontSize: 9, fill: "#737373" }} width={56} />
                     <Tooltip formatter={tooltipFmt} />
-                    <ReferenceLine y={0} stroke="#6B7280" strokeDasharray="3 3" />
+                    <ReferenceLine y={0} stroke="#737373" strokeDasharray="3 3" />
                     <Line
                       type="monotone"
                       dataKey="cyGp"
@@ -536,10 +536,10 @@ export default function DashboardClient({
         )}
 
         {/* ── YTD Statistics ─────────────────────────────────────────────── */}
-        <div className="bg-white border border-[#E5E7EB] rounded-lg shadow-sm p-5">
+        <div className="bg-white border border-[var(--hairline)] rounded-lg shadow-sm p-5">
           <div className="mb-5">
-            <h2 className="text-sm font-semibold text-[#1B2A4A]">Year-to-Date Statistics</h2>
-            <p className="text-xs text-[#6B7280] mt-0.5">
+            <h2 className="text-sm font-semibold text-[var(--foreground)]">Year-to-Date Statistics</h2>
+            <p className="text-xs text-[var(--muted)] mt-0.5">
               Fiscal year {new Date(latestReport.period_date).getFullYear()} · through {toDateStr(latestReport.period_date)}
             </p>
           </div>
@@ -566,18 +566,18 @@ export default function DashboardClient({
             {/* YTD trend chart — incremental bars + cumulative GP line */}
             {fyPoints.length >= 1 && (
               <div>
-                <p className="text-xs font-medium text-[#6B7280] mb-3">
+                <p className="text-xs font-medium text-[var(--muted)] mb-3">
                   YTD Revenue, Costs &amp; Cumulative GP
                 </p>
                 <ResponsiveContainer width="100%" height={220}>
                   <ComposedChart data={fyPoints} margin={{ top: 4, right: 8, left: 8, bottom: 4 }}>
-                    <CartesianGrid strokeDasharray="3 3" stroke="#E5E7EB" />
-                    <XAxis dataKey="period" tick={{ fontSize: 9, fill: "#6B7280" }} />
-                    <YAxis tickFormatter={fmtAxis} tick={{ fontSize: 9, fill: "#6B7280" }} width={56} />
+                    <CartesianGrid strokeDasharray="3 3" stroke="#e5e5e5" />
+                    <XAxis dataKey="period" tick={{ fontSize: 9, fill: "#737373" }} />
+                    <YAxis tickFormatter={fmtAxis} tick={{ fontSize: 9, fill: "#737373" }} width={56} />
                     <Tooltip formatter={tooltipFmt} />
                     <Legend wrapperStyle={{ fontSize: 9 }} />
-                    <Bar dataKey="incrRevenue" name="Revenue" fill="#1B2A4A" radius={[2, 2, 0, 0]} />
-                    <Bar dataKey="incrCosts"   name="Costs"   fill="#9CA3AF" radius={[2, 2, 0, 0]} />
+                    <Bar dataKey="incrRevenue" name="Revenue" fill="#0a0a0a" radius={[2, 2, 0, 0]} />
+                    <Bar dataKey="incrCosts"   name="Costs"   fill="#737373" radius={[2, 2, 0, 0]} />
                     <Line
                       type="monotone"
                       dataKey="cumGp"
@@ -593,10 +593,10 @@ export default function DashboardClient({
 
             {/* YTD vs Prior Year comparison table */}
             <div>
-              <p className="text-xs font-medium text-[#6B7280] mb-3">YTD vs Prior Year</p>
+              <p className="text-xs font-medium text-[var(--muted)] mb-3">YTD vs Prior Year</p>
               <table className="w-full text-xs">
                 <thead>
-                  <tr className="bg-[#1B2A4A] text-white text-left">
+                  <tr className="bg-[var(--foreground)] text-white text-left">
                     <th className="px-3 py-2 font-semibold">Metric</th>
                     <th className="px-3 py-2 text-right font-semibold whitespace-nowrap">
                       YTD {new Date(latestReport.period_date).getFullYear()}
@@ -642,12 +642,12 @@ export default function DashboardClient({
                   ].map(({ label, ytd, py, fmt }, i) => {
                     const delta = ytd - py;
                     const deltaColor =
-                      delta > 0 ? "text-[#16A34A]" : delta < 0 ? "text-[#B22234]" : "text-[#6B7280]";
+                      delta > 0 ? "text-[#16A34A]" : delta < 0 ? "text-[#B22234]" : "text-[var(--muted)]";
                     return (
-                      <tr key={label} className={i % 2 === 0 ? "bg-white" : "bg-[#F9FAFB]"}>
-                        <td className="px-3 py-2 text-[#374151]">{label}</td>
+                      <tr key={label} className={i % 2 === 0 ? "bg-white" : "bg-[var(--surface)]"}>
+                        <td className="px-3 py-2 text-[var(--foreground)]">{label}</td>
                         <td className="px-3 py-2 text-right font-mono">{fmt(ytd)}</td>
-                        <td className="px-3 py-2 text-right font-mono text-[#6B7280]">{fmt(py)}</td>
+                        <td className="px-3 py-2 text-right font-mono text-[var(--muted)]">{fmt(py)}</td>
                         <td className={`px-3 py-2 text-right font-mono font-semibold ${deltaColor}`}>
                           {delta >= 0 ? "+" : ""}
                           {fmt(delta)}
@@ -662,15 +662,15 @@ export default function DashboardClient({
         </div>
 
         {/* GP fade table */}
-        <div className="bg-white border border-[#E5E7EB] rounded-lg shadow-sm p-5">
-          <h2 className="text-sm font-semibold text-[#1B2A4A] mb-1">GP Fade Analysis</h2>
-          <p className="text-xs text-[#6B7280] mb-4">
+        <div className="bg-white border border-[var(--hairline)] rounded-lg shadow-sm p-5">
+          <h2 className="text-sm font-semibold text-[var(--foreground)] mb-1">GP Fade Analysis</h2>
+          <p className="text-xs text-[var(--muted)] mb-4">
             Budgeted GP% (from jobs table) vs current estimated GP% per job
           </p>
           <div className="overflow-x-auto">
             <table className="w-full text-xs">
               <thead>
-                <tr className="bg-[#1B2A4A] text-white text-left">
+                <tr className="bg-[var(--foreground)] text-white text-left">
                   <th className="px-3 py-2 font-semibold whitespace-nowrap">Job #</th>
                   <th className="px-3 py-2 font-semibold">Job Name</th>
                   <th className="px-3 py-2 text-right font-semibold whitespace-nowrap">Original GP%</th>
@@ -682,12 +682,12 @@ export default function DashboardClient({
                 {gpFade.map(({ jobNumber, jobName, originalGp, currentGp, delta }, i) => (
                   <tr
                     key={jobNumber}
-                    className={`${i % 2 === 0 ? "bg-white" : "bg-[#F9FAFB]"} ${
+                    className={`${i % 2 === 0 ? "bg-white" : "bg-[var(--surface)]"} ${
                       delta < -5 ? "border-l-2 border-l-[#B22234]" : ""
                     }`}
                   >
                     <td className="px-3 py-2 font-mono">{jobNumber}</td>
-                    <td className="px-3 py-2 text-[#374151]">{jobName}</td>
+                    <td className="px-3 py-2 text-[var(--foreground)]">{jobName}</td>
                     <td className="px-3 py-2 text-right font-mono">{originalGp.toFixed(1)}%</td>
                     <td className="px-3 py-2 text-right font-mono">{currentGp.toFixed(1)}%</td>
                     <td
@@ -698,7 +698,7 @@ export default function DashboardClient({
                           ? "text-[#D97706]"
                           : delta > 0
                           ? "text-[#16A34A]"
-                          : "text-[#6B7280]"
+                          : "text-[var(--muted)]"
                       }`}
                     >
                       {delta >= 0 ? "+" : ""}
@@ -719,15 +719,15 @@ export default function DashboardClient({
 function SummaryCard({
   label,
   value,
-  valueColor = "text-[#1A1A1A]",
+  valueColor = "text-[var(--foreground)]",
 }: {
   label: string;
   value: string;
   valueColor?: string;
 }) {
   return (
-    <div className="bg-white border border-[#E5E7EB] rounded-lg shadow-sm p-4">
-      <p className="text-xs text-[#6B7280] mb-1">{label}</p>
+    <div className="bg-white border border-[var(--hairline)] rounded-lg shadow-sm p-4">
+      <p className="text-xs text-[var(--muted)] mb-1">{label}</p>
       <p className={`text-base font-bold font-mono leading-tight ${valueColor}`}>{value}</p>
     </div>
   );

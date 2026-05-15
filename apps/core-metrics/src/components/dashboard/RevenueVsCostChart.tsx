@@ -197,7 +197,7 @@ export default function RevenueVsCostChart({ weeks }: { weeks: WeekMetric[] }) {
                 type="monotone"
                 dataKey="op_income"
                 name="Operating Income"
-                stroke="#1B2A4A"
+                stroke="#0a0a0a"
                 strokeWidth={2}
                 dot={{ r: 3 }}
               />

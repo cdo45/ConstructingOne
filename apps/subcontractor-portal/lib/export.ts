@@ -58,7 +58,7 @@ export function generatePDF(
 
   // Header
   doc.setFontSize(14);
-  doc.text("VANCE CORP — CONTINUATION SHEET (G703 style)", 40, 40);
+  doc.text("ConstructingOne — Continuation Sheet (G703 style)", 40, 40);
   doc.setFontSize(10);
   doc.text(`Project #: ${header.projectNumber}`, 40, 60);
   doc.text(`Project: ${header.projectName}`, 40, 74);
@@ -155,7 +155,7 @@ export function generatePDF(
     doc.setPage(i);
     doc.setFontSize(8);
     doc.text(
-      `Vance Corp Sub Billing Portal — Generated ${genDate} — Page ${i} of ${pageCount}`,
+      `ConstructingOne Sub Billing Portal — Generated ${genDate} — Page ${i} of ${pageCount}`,
       40,
       doc.internal.pageSize.height - 20
     );
@@ -173,7 +173,7 @@ export function generateXLSX(
   const wb = XLSX.utils.book_new();
 
   const headerRows = [
-    ["Vance Corp — Continuation Sheet (G703 Style)"],
+    ["ConstructingOne — Continuation Sheet (G703 Style)"],
     ["Project #", header.projectNumber],
     ["Project", header.projectName],
     ["Client", header.client],

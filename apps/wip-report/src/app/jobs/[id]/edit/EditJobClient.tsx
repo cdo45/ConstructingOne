@@ -57,8 +57,8 @@ export default function EditJobClient({ job }: { job: Job }) {
   return (
     <div className="px-4 py-10">
       <div className="max-w-2xl mx-auto">
-        <h1 className="text-3xl font-bold mb-2 text-[#1A1A1A]">Edit Job</h1>
-        <p className="text-[#6B7280] mb-8">
+        <h1 className="text-3xl font-bold mb-2 text-[var(--foreground)]">Edit Job</h1>
+        <p className="text-[var(--muted)] mb-8">
           {job.job_number} &mdash; {job.job_name}
         </p>
 

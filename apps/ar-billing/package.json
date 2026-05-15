@@ -1,5 +1,5 @@
 {
-  "name": "vance-ar-billing",
+  "name": "ar-billing",
   "version": "0.1.0",
   "private": true,
   "scripts": {
@@ -9,6 +9,7 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@constructingone/ui": "workspace:*",
     "@neondatabase/serverless": "^1.0.2",
     "next": "14.2.35",
     "react": "^18",

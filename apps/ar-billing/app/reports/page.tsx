@@ -4,17 +4,16 @@ import { useState, useEffect, useCallback } from "react";
 import {
   BarChart, Bar, XAxis, YAxis, Tooltip, ResponsiveContainer, Cell,
 } from "recharts";
-import SiteHeader from "@/app/components/SiteHeader";
 
 // ─── Constants ────────────────────────────────────────────────────────────────
-const NAVY    = "#1F3864";
-const TEAL    = "#1F6B6B";
-const ORANGE  = "#C8102E";
-const LTGRAY  = "#F2F2F2";
-const DKGREEN = "#1E6B1E";
+const NAVY    = "var(--foreground)";
+const TEAL    = "var(--foreground)";
+const ORANGE  = "#dc2626";
+const LTGRAY  = "var(--surface)";
+const DKGREEN = "#15803d";
 
 const CHART_COLORS = [
-  "#1F3864","#1F6B6B","#C8102E","#1E6B1E","#7c3aed",
+  "var(--foreground)","var(--foreground)","#dc2626","#15803d","#7c3aed",
   "#b45309","#0369a1","#be185d","#065f46","#92400e",
 ];
 
@@ -174,7 +173,6 @@ export default function ReportsPage() {
 
   return (
     <div className="min-h-screen" style={{ background: LTGRAY, fontFamily: "Arial,Helvetica,sans-serif" }}>
-      <SiteHeader />
 
       <div className="max-w-7xl mx-auto px-4 py-8">
 

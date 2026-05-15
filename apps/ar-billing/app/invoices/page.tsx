@@ -1,7 +1,6 @@
 "use client";
 
 import { useState, useEffect, useMemo } from "react";
-import SiteHeader from "@/app/components/SiteHeader";
 
 // ─── Types ────────────────────────────────────────────────────────────────────
 interface Entry {
@@ -32,11 +31,11 @@ interface InvoiceRow {
 interface Toast { msg: string; type: "success" | "error"; }
 
 // ─── Constants ────────────────────────────────────────────────────────────────
-const NAVY   = "#1F3864";
-const TEAL   = "#1F6B6B";
-const ORANGE = "#C8102E";
-const DKGREEN = "#1E6B1E";
-const LTGRAY  = "#F2F2F2";
+const NAVY   = "var(--foreground)";
+const TEAL   = "var(--foreground)";
+const ORANGE = "#dc2626";
+const DKGREEN = "#15803d";
+const LTGRAY  = "var(--surface)";
 
 const STATUS_ORDER = ["pending","invoiced","received"] as const;
 const STATUS_BADGE: Record<string,{bg:string;color:string}> = {
@@ -248,7 +247,6 @@ export default function InvoicesPage() {
         </div>
       )}
 
-      <SiteHeader />
 
       <div className="w-full px-2 md:px-4 lg:px-8 py-8 space-y-6">
 
@@ -512,7 +510,7 @@ export default function InvoicesPage() {
               </div>
               <div className="rounded-xl border-2 p-4" style={{borderColor:ORANGE,background:"#fff7f7"}}>
                 <label className="block text-xs font-bold uppercase tracking-widest mb-1.5" style={{color:ORANGE}}>
-                  Reason for Edit <span className="text-red-500">*</span>
+                  Reason for Edit <span className="text-red-600-500">*</span>
                 </label>
                 <input type="text" value={editReason} onChange={e=>setEditReason(e.target.value)}
                   placeholder="Required"
@@ -563,7 +561,7 @@ export default function InvoicesPage() {
               </div>
               <div>
                 <label className="block text-xs font-bold uppercase tracking-widest mb-1.5" style={{color:ORANGE}}>
-                  Reason <span className="text-red-500">*</span>
+                  Reason <span className="text-red-600-500">*</span>
                 </label>
                 <input type="text" value={statusReason} onChange={e=>setStatusReason(e.target.value)}
                   placeholder="Required"

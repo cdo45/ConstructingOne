@@ -58,7 +58,7 @@ function Toast({
   return (
     <div
       className={`fixed bottom-6 right-6 z-50 px-5 py-3 rounded-xl shadow-xl text-sm font-medium ${
-        kind === "ok" ? "bg-[#1B2A4A] text-white" : "bg-red-600 text-white"
+        kind === "ok" ? "bg-[var(--foreground)] text-white" : "bg-red-600 text-white"
       }`}
       onAnimationEnd={onDone}
       style={{ animation: "fadeOut 3s forwards" }}
@@ -499,7 +499,7 @@ export default function CategoryEditor({
                       checked={Boolean(acc.is_non_cash)}
                       disabled={savingId === acc.id}
                       onChange={(e) => saveNonCash(acc, e.target.checked)}
-                      className="h-4 w-4 cursor-pointer accent-[#1B2A4A]"
+                      className="h-4 w-4 cursor-pointer accent-[var(--foreground)]"
                     />
                   </td>
                   <td className="table-td text-center">
@@ -516,7 +516,7 @@ export default function CategoryEditor({
                       checked={Boolean(acc.is_allocation)}
                       disabled={savingId === acc.id || !acc.is_non_cash}
                       onChange={(e) => saveAllocation(acc, e.target.checked)}
-                      className="h-4 w-4 cursor-pointer accent-[#1B2A4A] disabled:cursor-not-allowed disabled:opacity-40"
+                      className="h-4 w-4 cursor-pointer accent-[var(--foreground)] disabled:cursor-not-allowed disabled:opacity-40"
                     />
                   </td>
                   <td className="table-td text-xs text-gray-500 uppercase">{acc.normal_balance}</td>

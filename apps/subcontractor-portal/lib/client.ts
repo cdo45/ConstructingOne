@@ -9,7 +9,7 @@ export interface SessionUser {
   token: string;
 }
 
-const STORAGE_KEY = "vance-session";
+const STORAGE_KEY = "co-session";
 
 export function saveSession(u: SessionUser) {
   if (typeof window === "undefined") return;

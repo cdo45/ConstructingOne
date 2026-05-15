@@ -832,7 +832,7 @@ export default function WhatIfCalculator({ runway }: { runway: RunwaySummary | n
               onClick={() => setTab(t.key)}
               className={`px-3 py-2 text-xs font-medium border-b-2 transition-colors ${
                 selected
-                  ? "border-[#1B2A4A] text-[#1B2A4A]"
+                  ? "border-[var(--foreground)] text-[var(--foreground)]"
                   : "border-transparent text-gray-500 hover:text-gray-800"
               }`}
             >

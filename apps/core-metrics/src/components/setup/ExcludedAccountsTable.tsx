@@ -128,7 +128,7 @@ function Toast({
   return (
     <div
       className={`fixed bottom-6 right-6 z-50 px-5 py-3 rounded-xl shadow-xl text-sm font-medium ${
-        kind === "ok" ? "bg-[#1B2A4A] text-white" : "bg-red-600 text-white"
+        kind === "ok" ? "bg-[var(--foreground)] text-white" : "bg-red-600 text-white"
       }`}
       onAnimationEnd={onDone}
       style={{ animation: "fadeOut 4s forwards" }}
@@ -493,7 +493,7 @@ export default function ExcludedAccountsTable({ onActivated, refreshKey }: Props
                     <td className="table-td text-center">
                       <button
                         onClick={() => setModalTarget(r)}
-                        className="inline-flex items-center px-2.5 py-1 rounded text-xs font-medium bg-[#1B2A4A] text-white hover:bg-[#2a3d65] transition-colors"
+                        className="inline-flex items-center px-2.5 py-1 rounded text-xs font-medium bg-[var(--foreground)] text-white hover:bg-[var(--foreground)] transition-colors"
                       >
                         + Activate
                       </button>

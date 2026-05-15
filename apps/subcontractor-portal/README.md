@@ -1,8 +1,8 @@
-# Vance Corp Sub Billing Portal
+# Subcontractor Portal — ConstructingOne
 
-A local development build of the Vance Corp subcontractor billing and change order
-portal. Built with Next.js 14 (App Router), TypeScript, Tailwind, Prisma/SQLite, and a
-mocked JWT auth layer.
+Streamlined sub billing intake, lien-waiver tracking, change-order routing,
+and pay-app approvals. Built with Next.js 14 (App Router), TypeScript,
+Tailwind, Prisma/SQLite, and a mocked JWT auth layer.
 
 The production target is Vercel + Neon Postgres. SQLite is used locally — the schema
 mirrors what will run in Postgres; switch by changing `DATABASE_URL` in `.env.local`.
@@ -30,9 +30,9 @@ npm run dev
 
 | Role         | Email                | Password  |
 | ------------ | -------------------- | --------- |
-| Admin        | admin@vance.com      | test1234  |
-| PM           | pm1@vance.com        | test1234  |
-| PM           | pm2@vance.com        | test1234  |
+| Admin        | admin@example.com    | test1234  |
+| PM           | pm1@example.com      | test1234  |
+| PM           | pm2@example.com      | test1234  |
 | Sub (Acme)   | sub1@acme.com        | test1234  |
 | Sub (Elite)  | sub2@paving.com      | test1234  |
 | Sub (Titan)  | sub3@grading.com     | test1234  |
@@ -57,7 +57,7 @@ All `/api/*` routes require `Authorization: Bearer <token>` except `/api/auth/lo
 # Log in
 TOKEN=$(curl -s -X POST http://localhost:3000/api/auth/login \
   -H "Content-Type: application/json" \
-  -d '{"email":"pm1@vance.com","password":"test1234"}' \
+  -d '{"email":"pm1@example.com","password":"test1234"}' \
   | node -e 'let d="";process.stdin.on("data",c=>d+=c).on("end",()=>console.log(JSON.parse(d).data.token))')
 
 # List projects

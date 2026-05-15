@@ -339,7 +339,7 @@ function CategorySection({
                   <td className="table-td font-mono text-xs text-gray-500">
                     {row.account_no}
                   </td>
-                  <td className="table-td text-gray-800 group-hover:text-[#1B2A4A] group-hover:underline">
+                  <td className="table-td text-gray-800 group-hover:text-[var(--foreground)] group-hover:underline">
                     {row.description}
                   </td>
                   <td className="table-td text-right text-gray-600">
@@ -448,7 +448,7 @@ export default function WeekDetailPage({
       <div className="flex items-start justify-between mb-6">
         <div>
           <div className="flex items-center gap-2 text-sm text-gray-500 mb-1">
-            <Link href="/weeks" className="hover:text-[#1B2A4A] hover:underline">
+            <Link href="/weeks" className="hover:text-[var(--foreground)] hover:underline">
               All Weeks
             </Link>
             <svg className="w-3 h-3" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
@@ -575,7 +575,7 @@ export default function WeekDetailPage({
                       href={notes.doc_link}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="inline-flex items-center gap-2 text-sm text-[#1B2A4A] hover:underline font-medium"
+                      className="inline-flex items-center gap-2 text-sm text-[var(--foreground)] hover:underline font-medium"
                     >
                       <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
                         <path strokeLinecap="round" strokeLinejoin="round" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />

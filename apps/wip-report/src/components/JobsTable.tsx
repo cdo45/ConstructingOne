@@ -50,9 +50,9 @@ export default function JobsTable({ jobs: initialJobs }: { jobs: Job[] }) {
 
   if (jobs.length === 0) {
     return (
-      <p className="text-[#6B7280] text-center py-20">
+      <p className="text-[var(--muted)] text-center py-20">
         No jobs yet.{" "}
-        <Link href="/jobs/new" className="text-[#1B2A4A] underline">
+        <Link href="/jobs/new" className="text-[var(--foreground)] underline">
           Add the first one.
         </Link>
       </p>
@@ -60,10 +60,10 @@ export default function JobsTable({ jobs: initialJobs }: { jobs: Job[] }) {
   }
 
   return (
-    <div className="overflow-x-auto rounded-lg border border-[#E5E7EB]">
+    <div className="overflow-x-auto rounded-lg border border-[var(--hairline)]">
       <table className="w-full text-sm">
         <thead>
-          <tr className="bg-[#1B2A4A] text-white text-left">
+          <tr className="bg-[var(--foreground)] text-white text-left">
             <th className="px-3 py-3 font-semibold whitespace-nowrap">Job #</th>
             <th className="px-3 py-3 font-semibold whitespace-nowrap">Job Name</th>
             <th className="px-3 py-3 font-semibold whitespace-nowrap">Type</th>
@@ -97,17 +97,17 @@ export default function JobsTable({ jobs: initialJobs }: { jobs: Job[] }) {
               revisedContract > 0
                 ? ((revisedContract - Number(job.est_total_cost)) / revisedContract) * 100
                 : 0;
-            const rowBg = i % 2 === 0 ? "bg-white" : "bg-[#F9FAFB]";
+            const rowBg = i % 2 === 0 ? "bg-white" : "bg-[var(--surface)]";
             const isDeleting = deleting === job.id;
 
             return (
               <tr
                 key={job.id}
-                className={`${rowBg} hover:bg-[#F3F4F6] transition-colors ${isDeleting ? "opacity-50" : ""}`}
+                className={`${rowBg} hover:bg-[var(--surface)] transition-colors ${isDeleting ? "opacity-50" : ""}`}
               >
-                <td className="px-3 py-2 whitespace-nowrap font-mono text-[#1A1A1A]">{job.job_number}</td>
-                <td className="px-3 py-2 text-[#1A1A1A]">{job.job_name}</td>
-                <td className="px-3 py-2 whitespace-nowrap text-[#6B7280]">{job.job_type}</td>
+                <td className="px-3 py-2 whitespace-nowrap font-mono text-[var(--foreground)]">{job.job_number}</td>
+                <td className="px-3 py-2 text-[var(--foreground)]">{job.job_name}</td>
+                <td className="px-3 py-2 whitespace-nowrap text-[var(--muted)]">{job.job_type}</td>
                 <td className="px-3 py-2 whitespace-nowrap">
                   <span
                     className={`px-2 py-0.5 rounded text-xs font-semibold ${
@@ -121,29 +121,29 @@ export default function JobsTable({ jobs: initialJobs }: { jobs: Job[] }) {
                     {job.status}
                   </span>
                 </td>
-                <td className="px-3 py-2 text-right whitespace-nowrap text-[#1A1A1A]">
+                <td className="mono tabular-nums px-3 py-2 text-right whitespace-nowrap text-[var(--foreground)]">
                   ${fmt(Number(job.original_contract))}
                 </td>
-                <td className="px-3 py-2 text-right whitespace-nowrap text-[#1A1A1A]">
+                <td className="mono tabular-nums px-3 py-2 text-right whitespace-nowrap text-[var(--foreground)]">
                   ${fmt(Number(job.approved_cos))}
                 </td>
-                <td className="px-3 py-2 text-right whitespace-nowrap font-semibold text-[#1A1A1A]">
+                <td className="mono tabular-nums px-3 py-2 text-right whitespace-nowrap font-semibold text-[var(--foreground)]">
                   ${fmt(revisedContract)}
                 </td>
-                <td className="px-3 py-2 text-right whitespace-nowrap text-[#1A1A1A]">
+                <td className="mono tabular-nums px-3 py-2 text-right whitespace-nowrap text-[var(--foreground)]">
                   ${fmt(Number(job.est_total_cost))}
                 </td>
-                <td className="px-3 py-2 text-right whitespace-nowrap text-[#1A1A1A]">
+                <td className="mono tabular-nums px-3 py-2 text-right whitespace-nowrap text-[var(--foreground)]">
                   {estGpPct.toFixed(2)}%
                 </td>
-                <td className="px-3 py-2 text-[#6B7280] max-w-[180px] truncate">
+                <td className="px-3 py-2 text-[var(--muted)] max-w-[180px] truncate">
                   {job.notes ?? "—"}
                 </td>
                 <td className="px-3 py-2 whitespace-nowrap text-center">
                   <div className="flex gap-2 justify-center">
                     <Link
                       href={`/jobs/${job.id}/edit`}
-                      className="text-xs border border-[#1B2A4A] text-[#1B2A4A] hover:bg-[#1B2A4A]/10 px-2 py-1 rounded transition-colors"
+                      className="text-xs border border-[var(--foreground)] text-[var(--foreground)] hover:bg-[var(--foreground)]/10 px-2 py-1 rounded transition-colors"
                     >
                       Edit
                     </Link>

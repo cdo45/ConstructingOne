@@ -262,7 +262,7 @@ function DashboardInner() {
                     onClick={() => selectFy(fy)}
                     className={`px-3 py-1 rounded-full text-xs font-medium border transition-colors ${
                       selected
-                        ? "bg-[#1B2A4A] text-white border-[#1B2A4A]"
+                        ? "bg-[var(--foreground)] text-white border-[var(--foreground)]"
                         : "bg-white text-gray-700 border-gray-300 hover:bg-gray-50"
                     }`}
                   >
@@ -280,7 +280,7 @@ function DashboardInner() {
                 onClick={() => selectMonth(null)}
                 className={`px-3 py-1 rounded-full text-xs font-medium border transition-colors ${
                   effectiveMonth === null
-                    ? "bg-[#1B2A4A] text-white border-[#1B2A4A]"
+                    ? "bg-[var(--foreground)] text-white border-[var(--foreground)]"
                     : "bg-white text-gray-700 border-gray-300 hover:bg-gray-50"
                 }`}
               >
@@ -296,7 +296,7 @@ function DashboardInner() {
                     disabled={!isActive}
                     className={`px-3 py-1 rounded-full text-xs font-medium border transition-colors ${
                       selected
-                        ? "bg-[#1B2A4A] text-white border-[#1B2A4A]"
+                        ? "bg-[var(--foreground)] text-white border-[var(--foreground)]"
                         : !isActive
                         ? "bg-gray-50 text-gray-300 border-gray-200 cursor-not-allowed"
                         : "bg-white text-gray-700 border-gray-300 hover:bg-gray-50"
@@ -325,7 +325,7 @@ function DashboardInner() {
           <p className="text-sm text-gray-500 mb-2 font-medium">No data in this period.</p>
           <p className="text-xs text-gray-400">
             Try a different fiscal year or month, or import a CSV on the{" "}
-            <a href="/import" className="text-[#1B2A4A] underline">Import</a> page.
+            <a href="/import" className="text-[var(--foreground)] underline">Import</a> page.
           </p>
         </div>
       )}

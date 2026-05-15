@@ -168,7 +168,7 @@ export default function QuickAddModal({
                     value={v}
                     checked={normalBalance === v}
                     onChange={() => setNormalBalance(v)}
-                    className="accent-[#1B2A4A]"
+                    className="accent-[var(--foreground)]"
                   />
                   <span className="text-sm text-gray-700 capitalize">{v}</span>
                 </label>

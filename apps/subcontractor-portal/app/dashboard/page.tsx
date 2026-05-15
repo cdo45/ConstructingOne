@@ -4,7 +4,6 @@ import { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
 import Link from "next/link";
 import { api, requireRoleOnMount } from "@/lib/client";
-import Header from "@/components/Header";
 import StatusBadge from "@/components/StatusBadge";
 import { fmtUSD, fmtPct } from "@/lib/calc";
 import {
@@ -60,7 +59,6 @@ export default function DashboardPage() {
   if (!summary) {
     return (
       <>
-        <Header />
         <main style={{ padding: 24 }}>Loading…</main>
       </>
     );
@@ -77,7 +75,6 @@ export default function DashboardPage() {
 
   return (
     <>
-      <Header />
       <main style={{ padding: 24, maxWidth: 1400, margin: "0 auto" }}>
         <h1 style={{ marginBottom: 20 }}>Dashboard</h1>
 

@@ -31,7 +31,7 @@ export default async function EditJobPage({
   if (!job) {
     return (
       <div className="flex items-center justify-center py-40">
-        <p className="text-[#6B7280] text-lg">Job not found.</p>
+        <p className="text-[var(--muted)] text-lg">Job not found.</p>
       </div>
     );
   }

@@ -123,11 +123,11 @@ function ExecutiveSummary({ data }: { data: WeeklyReportData }) {
   const narrative = buildNarrative(data);
 
   return (
-    <div className="bg-[#1B2A4A] text-white rounded-lg p-6">
-      <h2 className="text-sm font-semibold uppercase tracking-widest text-blue-200 mb-3">
+    <div className="bg-[var(--foreground)] text-[var(--background)] p-8">
+      <h2 className="eyebrow mb-3" style={{ color: "rgba(250,250,250,0.65)" }}>
         Executive Summary
       </h2>
-      <p className="text-sm leading-relaxed text-blue-50">{narrative}</p>
+      <p className="text-[15px] leading-[1.6]">{narrative}</p>
     </div>
   );
 }
@@ -285,7 +285,7 @@ function CategoryMovementTable({ cat, hasPrior }: { cat: ReportCategory; hasPrio
             <div className="px-5 py-2 border-t border-gray-100">
               <button
                 onClick={() => setShowAll((s) => !s)}
-                className="text-xs text-[#1B2A4A] hover:underline font-medium"
+                className="text-xs text-[var(--foreground)] hover:underline font-medium"
               >
                 {showAll
                   ? "Show changes only"
@@ -480,19 +480,19 @@ async function exportPDF(data: WeeklyReportData) {
   const autoTable = (await import("jspdf-autotable")).default;
 
   const doc = new jsPDF({ orientation: "portrait", unit: "mm", format: "letter" });
-  const navy = [27, 42, 74] as [number, number, number];
+  const headerColor = [10, 10, 10] as [number, number, number];
   const lightGray = [245, 245, 245] as [number, number, number];
   const pageW = doc.internal.pageSize.getWidth();
 
   // ── Page 1: Header + Executive Summary + Ratios ───────────────────────────
 
   // Header bar
-  doc.setFillColor(...navy);
+  doc.setFillColor(...headerColor);
   doc.rect(0, 0, pageW, 22, "F");
   doc.setTextColor(255, 255, 255);
   doc.setFontSize(14);
   doc.setFont("helvetica", "bold");
-  doc.text("Vance Corporation — Weekly Pulse Report", 14, 10);
+  doc.text("ConstructingOne — Weekly Pulse Report", 14, 10);
   doc.setFontSize(9);
   doc.setFont("helvetica", "normal");
   doc.text(`Week Ending: ${fmtDate(data.week_ending)}`, 14, 17);
@@ -535,7 +535,7 @@ async function exportPDF(data: WeeklyReportData) {
     head: [["Ratio", "Description", "Current", "Prior Week"]],
     body: ratioRows,
     theme: "striped",
-    headStyles: { fillColor: navy, fontSize: 8 },
+    headStyles: { fillColor: headerColor, fontSize: 8 },
     bodyStyles: { fontSize: 8 },
     columnStyles: {
       0: { fontStyle: "bold", cellWidth: 38 },
@@ -605,7 +605,7 @@ async function exportPDF(data: WeeklyReportData) {
       head,
       body: [...body, totalRow],
       theme: "striped",
-      headStyles: { fillColor: navy, fontSize: 8 },
+      headStyles: { fillColor: headerColor, fontSize: 8 },
       bodyStyles: { fontSize: 8 },
       didParseCell: (hookData) => {
         // Bold the total row
@@ -625,7 +625,7 @@ async function exportPDF(data: WeeklyReportData) {
     });
   }
 
-  const filename = `Vance_Weekly_Pulse_${data.week_ending}.pdf`;
+  const filename = `Weekly_Pulse_${data.week_ending}.pdf`;
   doc.save(filename);
 }
 

@@ -27,7 +27,7 @@ let subToken = "";
 let otherSubToken = "";
 
 beforeAll(async () => {
-  const pm = await login("pm1@vance.com", "test1234");
+  const pm = await login("pm1@example.com", "test1234");
   pmToken = pm.token;
   const sub = await login("sub1@acme.com", "test1234");
   subToken = sub.token;
@@ -45,7 +45,7 @@ describe("auth", () => {
     const r = await fetch(`${BASE}/api/auth/login`, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ email: "pm1@vance.com", password: "wrong" })
+      body: JSON.stringify({ email: "pm1@example.com", password: "wrong" })
     });
     expect(r.status).toBe(401);
   });
@@ -69,7 +69,7 @@ describe("role-based access", () => {
     // Sub1 (Acme) has only one contract on Proj1
     const projNums = j.data.map((c: any) => c.projectNumber);
     for (const p of projNums) {
-      expect(["VC-2026-001"]).toContain(p);
+      expect(["2026-001"]).toContain(p);
     }
   });
 });

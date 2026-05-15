@@ -8,14 +8,14 @@ const config: Config = {
   ],
   theme: {
     extend: {
-      colors: {
-        navy: "#1B2A4A",
-      },
       fontFamily: {
-        sans: ["Inter", "ui-sans-serif", "system-ui", "sans-serif"],
+        sans: ["var(--font-sans)", "system-ui", "sans-serif"],
+        serif: ["var(--font-serif)", "ui-serif", "Georgia", "serif"],
+        mono: ["var(--font-mono)", "ui-monospace", "monospace"],
       },
     },
   },
   plugins: [],
 };
+
 export default config;

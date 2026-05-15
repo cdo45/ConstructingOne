@@ -1,7 +1,6 @@
 "use client";
 
 import { useState, useEffect, useCallback } from "react";
-import SiteHeader from "@/app/components/SiteHeader";
 
 // ─── Types ────────────────────────────────────────────────────────────────────
 interface Job {
@@ -25,11 +24,11 @@ interface Toast { msg: string; type: "success" | "error"; }
 type SortCol = "rj_number" | "company_name" | "status" | "total_billed" | "last_entry_date";
 
 // ─── Constants ────────────────────────────────────────────────────────────────
-const NAVY    = "#1F3864";
-const TEAL    = "#1F6B6B";
-const ORANGE  = "#C8102E";
-const DKGREEN = "#1E6B1E";
-const LTGRAY  = "#F2F2F2";
+const NAVY    = "var(--foreground)";
+const TEAL    = "var(--foreground)";
+const ORANGE  = "#dc2626";
+const DKGREEN = "#15803d";
+const LTGRAY  = "var(--surface)";
 
 const STATUS_COLORS: Record<string, { bg: string; text: string }> = {
   active:    { bg: "#dcfce7", text: "#166534" },
@@ -189,7 +188,6 @@ export default function JobsPage() {
         </div>
       )}
 
-      <SiteHeader />
 
       <div className="max-w-7xl mx-auto px-4 py-8">
 
@@ -340,7 +338,7 @@ export default function JobsPage() {
               {/* RJ Number */}
               <div>
                 <label className="block text-xs font-bold uppercase tracking-widest mb-1.5" style={{ color: TEAL }}>
-                  RJ Number <span className="text-red-400">*</span>
+                  RJ Number <span className="text-red-600-400">*</span>
                 </label>
                 <input type="text"
                   value={form.rj_number}
@@ -366,7 +364,7 @@ export default function JobsPage() {
               {/* Customer Name with autocomplete */}
               <div>
                 <label className="block text-xs font-bold uppercase tracking-widest mb-1.5" style={{ color: TEAL }}>
-                  Customer <span className="text-red-400">*</span>
+                  Customer <span className="text-red-600-400">*</span>
                 </label>
                 <div className="relative">
                   <input type="text"

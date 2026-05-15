@@ -19,7 +19,7 @@ async function main() {
   console.log("Seeding users...");
   const admin = await prisma.user.create({
     data: {
-      email: "admin@vance.com",
+      email: "admin@example.com",
       passwordHash: hash,
       name: "Admin User",
       role: "admin"
@@ -28,7 +28,7 @@ async function main() {
 
   const pm1 = await prisma.user.create({
     data: {
-      email: "pm1@vance.com",
+      email: "pm1@example.com",
       passwordHash: hash,
       name: "Pat Martinez",
       role: "pm"
@@ -37,7 +37,7 @@ async function main() {
 
   const pm2 = await prisma.user.create({
     data: {
-      email: "pm2@vance.com",
+      email: "pm2@example.com",
       passwordHash: hash,
       name: "Morgan Lee",
       role: "pm"
@@ -79,7 +79,7 @@ async function main() {
   // Active Project 1: City of Franklin — Main Street Rehab
   const proj1 = await prisma.project.create({
     data: {
-      projectNumber: "VC-2026-001",
+      projectNumber: "2026-001",
       name: "Main Street Rehabilitation",
       client: "City of Franklin",
       contractValue: 2850000,
@@ -93,7 +93,7 @@ async function main() {
   // Active Project 2: Dakota County — Highway 52 Expansion
   const proj2 = await prisma.project.create({
     data: {
-      projectNumber: "VC-2026-002",
+      projectNumber: "2026-002",
       name: "Highway 52 Expansion Phase II",
       client: "Dakota County",
       contractValue: 4200000,
@@ -107,7 +107,7 @@ async function main() {
   // Completed project
   const proj3 = await prisma.project.create({
     data: {
-      projectNumber: "VC-2025-017",
+      projectNumber: "2025-017",
       name: "Cedar Lake Parkway Resurfacing",
       client: "City of Cedar Lake",
       contractValue: 1150000,

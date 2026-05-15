@@ -3,7 +3,6 @@
 import { useEffect, useState } from "react";
 import { useParams, useRouter } from "next/navigation";
 import { api, requireRoleOnMount } from "@/lib/client";
-import Header from "@/components/Header";
 import StatusBadge from "@/components/StatusBadge";
 import BillingReviewModal from "@/components/BillingReviewModal";
 import ChangeOrderForm from "@/components/ChangeOrderForm";
@@ -34,7 +33,6 @@ export default function ProjectDetailPage() {
   if (loading) {
     return (
       <>
-        <Header />
         <main style={{ padding: 24 }}>Loading…</main>
       </>
     );
@@ -42,7 +40,6 @@ export default function ProjectDetailPage() {
   if (!data) {
     return (
       <>
-        <Header />
         <main style={{ padding: 24 }}>Project not found.</main>
       </>
     );
@@ -69,7 +66,6 @@ export default function ProjectDetailPage() {
 
   return (
     <>
-      <Header />
       <main style={{ padding: 24, maxWidth: 1400, margin: "0 auto" }}>
         <div style={{ marginBottom: 8, color: "var(--text-secondary)", fontSize: 13 }}>
           <span className="mono">{project.projectNumber}</span> — {project.client}

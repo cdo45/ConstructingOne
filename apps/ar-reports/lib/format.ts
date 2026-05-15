@@ -146,7 +146,7 @@ export function heatForecastReconcile(
 
 /**
  * White → green gradient for forecast bucket amounts. `value` and `max`
- * should be non-negative; ratio 0 → white, ratio 1 → vance-good. Returns
+ * should be non-negative; ratio 0 → white, ratio 1 → brand-good. Returns
  * undefined for null / non-positive values.
  */
 export function heatWhiteToGreen(

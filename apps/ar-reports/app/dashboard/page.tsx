@@ -1,4 +1,3 @@
-import Link from "next/link";
 import {
   getDashboardKpis,
   getBilledCollectedByYear,
@@ -31,8 +30,8 @@ function KpiCard({
 }) {
   const valueClass =
     size === "lg"
-      ? "text-3xl font-bold text-vance-navy"
-      : "text-xl font-semibold text-vance-navy";
+      ? "text-3xl font-bold text-[var(--foreground)]"
+      : "text-xl font-semibold text-[var(--foreground)]";
   const padClass = size === "lg" ? "p-5" : "p-4";
   return (
     <div className={`rounded border border-gray-200 bg-white shadow-sm ${padClass}`}>
@@ -66,45 +65,14 @@ export default async function DashboardPage() {
   }));
 
   return (
-    <main className="min-h-screen bg-gray-50">
-      <header className="bg-vance-navy text-white">
-        <div className="mx-auto max-w-[1400px] px-6 py-6">
-          <div className="flex items-center justify-between">
-            <div>
-              <Link href="/" className="text-xs text-gray-200 hover:underline">
-                ← Home
-              </Link>
-              <h1 className="mt-1 text-2xl font-bold">Dashboard</h1>
-              <p className="mt-1 text-sm text-gray-200">
-                AR portfolio at a glance — KPIs, top customers, and yearly
-                billing vs collections.
-              </p>
-            </div>
-            <div className="flex gap-2">
-              <Link
-                href="/customers"
-                className="rounded bg-white/10 px-3 py-1.5 text-xs font-semibold text-white hover:bg-white/20"
-              >
-                Customer List
-              </Link>
-              <Link
-                href="/rankings"
-                className="rounded bg-white/10 px-3 py-1.5 text-xs font-semibold text-white hover:bg-white/20"
-              >
-                Rankings
-              </Link>
-              <Link
-                href="/forecast"
-                className="rounded bg-white/10 px-3 py-1.5 text-xs font-semibold text-white hover:bg-white/20"
-              >
-                Forecast →
-              </Link>
-            </div>
-          </div>
-        </div>
-      </header>
-
-      <section className="mx-auto max-w-[1400px] px-6 py-6 space-y-6">
+    <section className="mx-auto max-w-[1400px] px-6 py-12 space-y-8 md:py-16">
+      <div className="flex items-baseline justify-between gap-6">
+        <span className="eyebrow">Dashboard</span>
+        <p className="max-w-[440px] text-right text-[14px] text-[var(--muted)]">
+          AR portfolio at a glance — KPIs, top customers, and yearly billing vs
+          collections.
+        </p>
+      </div>
         {/* Top KPI block — 4 large cards */}
         <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-4">
           <KpiCard
@@ -155,7 +123,7 @@ export default async function DashboardPage() {
 
         {/* Top 10 customers chart */}
         <div className="rounded border border-gray-200 bg-white shadow-sm">
-          <div className="border-b border-gray-100 bg-vance-navy rounded-t px-4 py-2 text-white">
+          <div className="border-b border-gray-100 bg-[var(--foreground)] text-[var(--background)] rounded-t px-4 py-2">
             <h2 className="text-sm font-semibold">
               Top 10 Customers by Lifetime Billed
             </h2>
@@ -164,7 +132,7 @@ export default async function DashboardPage() {
             <TopCustomersChart rows={top10} />
             <p className="mt-2 text-right text-xs text-gray-500">
               Largest:{" "}
-              <span className="font-semibold text-vance-navy">
+              <span className="font-semibold text-[var(--foreground)]">
                 {top10[0]?.customer_name ?? "—"}
               </span>{" "}
               · {fmtCurrencyCompact(top10[0]?.lifetime_billed ?? 0)}
@@ -174,7 +142,7 @@ export default async function DashboardPage() {
 
         {/* Billed vs Collected by Year */}
         <div className="rounded border border-gray-200 bg-white shadow-sm">
-          <div className="border-b border-gray-100 bg-vance-navy rounded-t px-4 py-2 text-white">
+          <div className="border-b border-gray-100 bg-[var(--foreground)] text-[var(--background)] rounded-t px-4 py-2">
             <h2 className="text-sm font-semibold">Billed vs Collected by Year</h2>
           </div>
           <div className="p-4">
@@ -186,7 +154,6 @@ export default async function DashboardPage() {
             </p>
           </div>
         </div>
-      </section>
-    </main>
+    </section>
   );
 }
