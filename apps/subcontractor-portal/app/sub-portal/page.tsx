@@ -4,7 +4,6 @@ import { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
 import Link from "next/link";
 import { api, loadSession, requireRoleOnMount } from "@/lib/client";
-import Header from "@/components/Header";
 import StatusBadge from "@/components/StatusBadge";
 import { fmtUSD, fmtPct } from "@/lib/calc";
 
@@ -47,7 +46,6 @@ export default function SubPortalPage() {
 
   return (
     <>
-      <Header />
       <main style={{ padding: 24, maxWidth: 1200, margin: "0 auto" }}>
         <h1 style={{ marginBottom: 8 }}>Welcome, {companyName}</h1>
         <p style={{ color: "var(--text-secondary)", marginBottom: 24 }}>

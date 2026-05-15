@@ -24,7 +24,7 @@ export async function GET(
   });
 
   return apiResponse(
-    periods.map((bp) => ({
+    periods.map((bp: (typeof periods)[number]) => ({
       id: bp.id,
       contractId: bp.contractId,
       sub: bp.sub,
@@ -32,9 +32,14 @@ export async function GET(
       periodYear: bp.periodYear,
       status: bp.status,
       submittedAt: bp.submittedAt,
-      periodTotal: bp.lineItems.reduce((s, li) => s + Number(li.valueThisPeriod), 0),
+      periodTotal: bp.lineItems.reduce(
+        (s: number, li: (typeof bp.lineItems)[number]) =>
+          s + Number(li.valueThisPeriod),
+        0
+      ),
       cumulativeTotal: bp.lineItems.reduce(
-        (s, li) => s + Number(li.valueCumulative),
+        (s: number, li: (typeof bp.lineItems)[number]) =>
+          s + Number(li.valueCumulative),
         0
       ),
       notes: bp.notes

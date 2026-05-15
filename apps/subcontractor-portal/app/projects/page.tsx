@@ -3,7 +3,6 @@
 import { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
 import { api, requireRoleOnMount } from "@/lib/client";
-import Header from "@/components/Header";
 import StatusBadge from "@/components/StatusBadge";
 import { fmtUSD, fmtPct } from "@/lib/calc";
 
@@ -21,7 +20,6 @@ export default function ProjectsListPage() {
 
   return (
     <>
-      <Header />
       <main style={{ padding: 24, maxWidth: 1400, margin: "0 auto" }}>
         <h1 style={{ marginBottom: 20 }}>All Projects</h1>
         <div className="card">

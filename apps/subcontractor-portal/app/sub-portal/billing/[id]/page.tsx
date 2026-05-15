@@ -3,7 +3,6 @@
 import { useEffect, useState } from "react";
 import { useParams, useRouter } from "next/navigation";
 import { api, requireRoleOnMount } from "@/lib/client";
-import Header from "@/components/Header";
 import StatusBadge from "@/components/StatusBadge";
 import ChangeOrderForm from "@/components/ChangeOrderForm";
 import { fmtUSD, fmtPct, fmtQty, computeBillingValues } from "@/lib/calc";
@@ -104,7 +103,6 @@ export default function SubBillingEntryPage() {
   if (!period) {
     return (
       <>
-        <Header />
         <main style={{ padding: 24 }}>Loading…</main>
       </>
     );
@@ -116,7 +114,6 @@ export default function SubBillingEntryPage() {
 
   return (
     <>
-      <Header />
       <main style={{ padding: 24, maxWidth: 1400, margin: "0 auto" }}>
         <div style={{ color: "var(--text-secondary)", fontSize: 13 }}>
           {period.project.projectNumber} — {period.project.client}

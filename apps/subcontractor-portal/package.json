@@ -1,5 +1,5 @@
 {
-  "name": "vance-sub-billing",
+  "name": "subcontractor-portal",
   "version": "0.1.0",
   "private": true,
   "scripts": {
@@ -16,6 +16,7 @@
     "seed": "tsx prisma/seed.ts"
   },
   "dependencies": {
+    "@constructingone/ui": "workspace:*",
     "@prisma/client": "^5.22.0",
     "@radix-ui/react-dialog": "^1.1.2",
     "@radix-ui/react-select": "^2.1.2",

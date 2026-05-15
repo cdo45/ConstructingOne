@@ -222,6 +222,9 @@ importers:
 
   apps/subcontractor-portal:
     dependencies:
+      '@constructingone/ui':
+        specifier: workspace:*
+        version: link:../../packages/ui
       '@prisma/client':
         specifier: ^5.22.0
         version: 5.22.0(prisma@5.22.0)
